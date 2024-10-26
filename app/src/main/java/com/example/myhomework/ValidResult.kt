@@ -25,7 +25,8 @@ fun isValidPassword(passwordString: String): ValidResult {
 }
 
 fun isEmailValid(emailString: String): Boolean {
-    return !TextUtils.isEmpty(emailString) && android.util.Patterns.EMAIL_ADDRESS.matcher(emailString).matches()
+    return !TextUtils.isEmpty(emailString) &&
+            android.util.Patterns.EMAIL_ADDRESS.matcher(emailString).matches()
 }
 
 sealed class ValidResult {

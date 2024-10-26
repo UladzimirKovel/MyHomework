@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.myhomework
 
 import android.content.Intent
@@ -21,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         val loginTextviewPassword: EditText = findViewById(R.id.login_textview_password)
         val emailString = loginTextviewEmail.text.toString()
 
-        loginTextviewEmail.doAfterTextChanged { text ->
+        loginTextviewEmail.doAfterTextChanged {
             if (isEmailValid(emailString)) {
                 Toast.makeText(this, "Valid Email", Toast.LENGTH_LONG).show()
             } else {
@@ -43,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginButtonMain.setOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         accTextviewLogin.setOnClickListener {

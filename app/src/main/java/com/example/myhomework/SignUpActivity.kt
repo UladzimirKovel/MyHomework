@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.myhomework
 
 import android.content.Intent
@@ -69,7 +71,9 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
-        signupButtonMain.setOnClickListener { finish()}
+        signupButtonMain.setOnClickListener {
+            onBackPressed()
+        }
 
         accTextViewSignup.setOnClickListener {
             startActivity(
