@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">MyHomework</string>
+
+    <string name="textview_title_main">Spiice</string>
+    <string name="acc_textview_main">You have an account?</string>
+    <string name="button_main">Discover the platform</string>
+
+    <string name="signup_textview_title">Sign-up</string>
+    <string name="signup_textview_firstname">First name</string>
+    <string name="signup_textview_lastname">Last name</string>
+    <string name="signup_textview_email">Email</string>
+    <string name="signup_textview_password">Password</string>
+    <string name="signup_button_main">Sign-up</string>
+    <string name="acc_textview_signup">You have an account? <b>Log-in</b></string>
+
+    <string name="login_textview_title">Log-in</string>
+    <string name="login_textview_email">Email</string>
+    <string name="login_textview_password">Password</string>
+    <string name="login_button_main">Log-in</string>
+    <string name="acc_textview_login">Return to Sign-up</string>
+
+    <string name="error_empty_text">Text field is empty</string>
+    <string name="error_length_text">Length should be min 3 max 255</string>
+    <string name="error_symbols_text">Error symbols</string>
+
+    <string name="edittext_name">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
+
 </resources>

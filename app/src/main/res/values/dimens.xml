@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="title_main_90dp">90dp</dimen>
+    <dimen name="main_active_button_margin_180dp">180dp</dimen>
+    <dimen name="textview_margin_100dp">100dp</dimen>
+    <dimen name="button_width_320dp">320dp</dimen>
+
+    <dimen name="test_size_title_main_name_80sp">80sp</dimen>
+
+    <dimen name="title_signup_main_48sp">30sp</dimen>
+
+    <dimen name="linear_edittext_width_260dp">260dp</dimen>
+
+    <dimen name="linear_edittext_margin_25dp">25dp</dimen>
+
+    <dimen name="linear_layout_width_340dp">340dp</dimen>
+    <dimen name="linear_layout_margin_100dp">100dp</dimen>
+    <dimen name="linear_layout_padding_30sp">48sp</dimen>
+
+</resources>
