@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.myhomework
 
 import android.content.Intent
@@ -9,7 +7,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doAfterTextChanged
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -24,55 +21,44 @@ class SignUpActivity : AppCompatActivity() {
         val signupTextViewLastname: EditText = findViewById(R.id.signup_textview_lastname)
         val signupTextViewEmail: EditText = findViewById(R.id.email)
         val signupTextViewPassword: EditText = findViewById(R.id.password)
-        val emailString = signupTextViewEmail.text.toString()
+        val buttonReg: Button = findViewById(R.id.login_button)
 
-        signupTextViewFirstname.doAfterTextChanged { text ->
-            when (val validationResFirstName: ValidResult = isNameValid(text.toString())) {
-                is ValidResult.Valid -> {
-                    signupTextViewFirstname.error = null
-                }
+        buttonReg.setOnClickListener {
+            val isNameValid = signupTextViewFirstname.text.toString().trim()
+            val isLastNameValid = signupTextViewLastname.text.toString().trim()
+            val emailString = signupTextViewEmail.text.toString().trim()
+            val isValidPassword = signupTextViewPassword.text.toString().trim()
 
-                is ValidResult.Invalid -> {
-                    signupTextViewFirstname.error = getString(validationResFirstName.errorRes)
-                }
-            }
-        }
-
-        signupTextViewLastname.doAfterTextChanged { text ->
-            when (val validationResLastName: ValidResult = isNameValid(text.toString())) {
-                is ValidResult.Valid -> {
-                    signupTextViewLastname.error = null
-                }
-
-                is ValidResult.Invalid -> {
-                    signupTextViewLastname.error = getString(validationResLastName.errorRes)
-                }
-            }
-        }
-
-        signupTextViewEmail.doAfterTextChanged {
-            if (isEmailValid(emailString)) {
-                Toast.makeText(this, "Valid Email", Toast.LENGTH_LONG).show()
+            if (emailString == "" ||
+                isLastNameValid == "" ||
+                isNameValid == "" ||
+                isValidPassword == ""
+            ) {
+                Toast.makeText(
+                    this, "Not all fields are filled in", Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            } else if (!isEmailValid(emailString)) {
+                Toast.makeText(
+                    this, "Error Email", Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            } else if ((signupTextViewPassword.length() < 8) ||
+                (signupTextViewFirstname.length() < 8) ||
+                (signupTextViewLastname.length() < 8)
+            ) {
+                Toast.makeText(
+                    this, "Length should be min 8", Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             } else {
-                Toast.makeText(this, "Error Email", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
-        }
-
-        signupTextViewPassword.doAfterTextChanged { text ->
-            when (val validationResPasswordSignup: ValidResult = isValidPassword(text.toString())) {
-                is ValidResult.Valid -> {
-                    signupTextViewPassword.error = null
-                }
-
-                is ValidResult.Invalid -> {
-                    signupTextViewPassword.error = getString(validationResPasswordSignup.errorRes)
-                }
-            }
-
         }
 
         signupButtonMain.setOnClickListener {
-            onBackPressed()
+            finish()
         }
 
         accTextViewSignup.setOnClickListener {

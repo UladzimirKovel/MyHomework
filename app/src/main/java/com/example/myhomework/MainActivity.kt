@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val buttonMain: Button = findViewById(R.id.button_main)
         val mainTextViewToLogin: TextView = findViewById(R.id.main_textview_to_login)
 
