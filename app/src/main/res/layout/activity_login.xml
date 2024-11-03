@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200">
+
+    <LinearLayout
+        android:layout_width="@dimen/linear_layout_width_340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="@dimen/linear_layout_margin_100dp"
+        android:orientation="vertical"
+        android:padding="@dimen/linear_layout_padding_40sp">
+
+        <TextView
+            android:text="@string/login_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/title_signup_main_48sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/login_textview_email"
+            android:hint="@string/login_textview_email"
+            android:digits="@string/edittext_default"
+            android:layout_width="@dimen/linear_edittext_width_260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="@dimen/linear_edittext_margin_25dp"
+            android:padding="12dp"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            style="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/login_textview_password"
+            android:hint="@string/login_textview_password"
+            android:digits="@string/edittext_default"
+            android:layout_width="@dimen/linear_edittext_width_260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="@dimen/linear_edittext_margin_25dp"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            style="@style/EditTextStyle" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_main"
+        android:text="@string/login_button_main"
+        android:layout_width="@dimen/button_width_320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/main_active_button_margin_180dp"
+        style="@style/MainButtonStyle" />
+
+    <TextView
+        android:id="@+id/main_textview_to_login"
+        android:text="@string/acc_textview_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:textSize="@dimen/linear_layout_padding_40sp"
+        android:layout_marginBottom="@dimen/textview_margin_100dp"
+        style="@style/LogInButtonStyle"
+        android:fontFamily="@font/acme"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_button"
+        android:background="@drawable/login_button"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:textStyle="bold"
+        android:textColor="#fdfdfd"
+        android:textSize="18sp"
+        android:text="@string/Next" />
+
+</FrameLayout>
