@@ -1,7 +1,12 @@
 package com.example.myhomework
 
-data class Auto(
-    val brand: String,
-    val status: String,
-    val releaseData: String
-)
+sealed interface Auto {
+    data class User(
+        val brand: String,
+        val status: String,
+    ) : Auto
+
+    data class Card(
+        val releaseData: String
+    ) : Auto
+}

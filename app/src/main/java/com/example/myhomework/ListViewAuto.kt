@@ -42,13 +42,15 @@ class ListViewAuto : AppCompatActivity() {
             val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
 
             if (title.isNotEmpty() && title.isNotBlank()) {
-                val newAuto = Auto(title, text, date)
+                val newAuto = Auto.User(title, text)
                 ListAuto.addNote(newAuto) //Добавляем заметку в репозиторий
                 autoAdapter.notifyDataSetChanged() //Уведомляем адаптер о том, что данные изменились
                 brandTextView.text.clear() // Очищаем поле ввода заголовка
                 messageTextView.text.clear() //Очищаем поле ввода текста
-
-
+                val newAutoDate = Auto.Card(date)
+                ListAuto.addNote(newAutoDate)
+                autoAdapter.notifyDataSetChanged()
+                SimpleDateFormat.DATE_FIELD.toString()
             }
         }
 
@@ -58,7 +60,6 @@ class ListViewAuto : AppCompatActivity() {
             )
         }
     }
-
 }
 
 
