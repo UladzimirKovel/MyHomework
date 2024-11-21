@@ -1,40 +1,47 @@
 package com.example.myhomework
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhomework.ui.theme.adapter.AutoAdapter
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ListViewAuto : AppCompatActivity() {
+class ListViewAutoFragment : Fragment() {
 
     private lateinit var notesRecyclerView: RecyclerView
     private lateinit var autoAdapter: AutoAdapter
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notes)
+    @SuppressLint("NotifyDataSetChanged", "CommitTransaction", "MissingInflatedId")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        notesRecyclerView = findViewById(R.id.notes_recycler_view)
+        val currentView = inflater.inflate(R.layout.fragment_list_auto, container, false)
+
+        notesRecyclerView = currentView.findViewById(R.id.notes_recycler_view)
 
         // Получаем изменяемый список заметок
         val notes = ListAuto.getNotes() as MutableList<Auto>
+        notesRecyclerView.layoutManager = LinearLayoutManager(currentView.context)
         autoAdapter = AutoAdapter(notes)
         notesRecyclerView.adapter = autoAdapter
-        notesRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        val backMainActivity: Button = findViewById(R.id.back_main_activity)
-        val addButton: Button = findViewById(R.id.add_notes_button)
-        val brandTextView: EditText = findViewById(R.id.title_notes_tv)
-        val messageTextView: EditText = findViewById(R.id.message_notes_tv)
+        val backMainActivity: Button = currentView.findViewById(R.id.back_main_fragment)
+        val addButton: Button = currentView.findViewById(R.id.add_notes_button)
+        val brandTextView: EditText = currentView.findViewById(R.id.title_notes_tv)
+        val messageTextView: EditText = currentView.findViewById(R.id.message_notes_tv)
 
         addButton.setOnClickListener {
             val title = brandTextView.text.toString()
@@ -54,11 +61,22 @@ class ListViewAuto : AppCompatActivity() {
             }
         }
 
-        backMainActivity.setOnClickListener {
-            startActivity(
-                Intent(this, MainActivity::class.java)
-            )
+        val smoothScroller = object: LinearSmoothScroller(currentView.context){
+            override fun getVerticalSnapPreference(): Int {
+                return SNAP_TO_END
+            }
         }
+
+        smoothScroller.targetPosition = notes.size - 1
+        notesRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+
+        backMainActivity.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.newFragmentView, MainFragment(), "Main")
+                .addToBackStack(null)
+                .commit()
+        }
+        return currentView
     }
 }
 

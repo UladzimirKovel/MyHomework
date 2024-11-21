@@ -39,5 +39,15 @@
         android:text="@string/delete_notes_button"
         android:textColor="#673AB7"
         android:textStyle="bold" />
+    <Button
+        android:id="@+id/share_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/login_button"
+        android:textColor="#673AB7"
+        android:textStyle="bold"
+        android:text="@string/share"/>
 
 </LinearLayout>

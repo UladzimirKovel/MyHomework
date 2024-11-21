@@ -5,7 +5,7 @@
     android:background="@color/purple_200">
 
     <TextView
-        android:id="@+id/button_auto"
+        android:id="@+id/fragment_button_auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -14,7 +14,7 @@
         style="@style/TitleTextStyle" />
 
     <Button
-        android:id="@+id/button_main"
+        android:id="@+id/fragment_button_main"
         android:text="@string/button_main"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         style="@style/MainButtonStyle" />
 
     <TextView
-        android:id="@+id/main_textview_to_login"
+        android:id="@+id/fragment_main_textview_to_login"
         android:textSize="@dimen/linear_layout_padding_40sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
