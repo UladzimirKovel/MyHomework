@@ -17,5 +17,19 @@
     <dimen name="linear_layout_width_340dp">340dp</dimen>
     <dimen name="linear_layout_margin_100dp">100dp</dimen>
     <dimen name="linear_layout_padding_40sp">40sp</dimen>
+    
+    <dimen name="acb_width_270dp">270dp</dimen>
+    <dimen name="acb_height_50dp">50dp</dimen>
+    <dimen name="acb_margin_top_15dp">15dp</dimen>
+
+    <dimen name="acb_text_size_18sp">18sp</dimen>
+    <dimen name="tv_text_size_20sp">20sp</dimen>
+
+    <dimen name="margin_top_8dp">8dp</dimen>
+    <dimen name="button_margin_start_150dp">150dp</dimen>
+
+    <dimen name="button_margin_top_170dp">170dp</dimen>
+
+    <dimen name="margin_20dp">20dp</dimen>
 
 </resources>

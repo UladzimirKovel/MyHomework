@@ -50,12 +50,12 @@
 
     <Button
         android:id="@+id/button_main"
-        android:text="@string/login_button_main"
+        style="@style/MainButtonStyle"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="@dimen/main_active_button_margin_180dp"
-        style="@style/MainButtonStyle" />
+        android:text="@string/login_button_main" />
 
     <TextView
         android:id="@+id/main_textview_to_login"
@@ -70,14 +70,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_button"
-        android:layout_width="270dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/acb_width_270dp"
+        android:layout_height="@dimen/acb_height_50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/acb_margin_top_15dp"
         android:background="@drawable/login_button"
         android:text="@string/Next"
         android:textColor="#fdfdfd"
-        android:textSize="18sp"
+        android:textSize="@dimen/acb_text_size_18sp"
         android:textStyle="bold" />
 
 </FrameLayout>
