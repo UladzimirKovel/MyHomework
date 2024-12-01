@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200">
+
+    <TextView
+        android:id="@+id/fragment_button_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/title_main_90dp"
+        android:text="@string/textview_title_main"
+        style="@style/TitleTextStyle" />
+
+    <Button
+        android:id="@+id/fragment_button_main"
+        android:text="@string/button_main"
+        android:layout_width="@dimen/button_width_320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/main_active_button_margin_180dp"
+        style="@style/MainButtonStyle" />
+
+    <TextView
+        android:id="@+id/fragment_main_textview_to_login"
+        android:textSize="@dimen/linear_layout_padding_40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/textview_margin_100dp"
+        android:text="@string/acc_textview_main"
+        style="@style/LogInButtonStyle" />
+
+</FrameLayout>
