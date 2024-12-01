@@ -1,4 +1,4 @@
-package com.example.myhomework.ui.theme.adapter
+package com.example.myhomework.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myhomework.Auto
-import com.example.myhomework.ListAuto
+import com.example.myhomework.domain.model.Auto
+import com.example.myhomework.domain.model.ListAuto
 import com.example.myhomework.R
 
 

@@ -1,4 +1,4 @@
-package com.example.myhomework
+package com.example.myhomework.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.myhomework.R
 
 
 class MainFragment : Fragment() {
@@ -17,9 +18,15 @@ class MainFragment : Fragment() {
     ): View? {
         val currentView = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val autoButton: TextView = currentView.findViewById(R.id.fragment_button_auto)
-        val buttonMain: Button = currentView.findViewById(R.id.fragment_button_main)
-        val mainTextViewToLogin: TextView = currentView.findViewById(R.id.fragment_main_textview_to_login)
+        setupListener(currentView)
+
+        return currentView
+    }
+    private fun setupListener(view: View) {
+
+        val autoButton: TextView = view.findViewById(R.id.fragment_button_auto)
+        val buttonMain: Button = view.findViewById(R.id.fragment_button_main)
+        val mainTextViewToLogin: TextView =view.findViewById(R.id.fragment_main_textview_to_login)
 
         autoButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
@@ -27,7 +34,6 @@ class MainFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
         buttonMain.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
@@ -42,6 +48,5 @@ class MainFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-        return currentView
     }
 }

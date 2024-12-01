@@ -32,6 +32,8 @@
     <string name="delete_notes_button">Delete</string>
     <string name="share">Share</string>
 
+    <string name="example">Example</string>
+
     <string name="edittext_name">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
     <string name="info_block">Info block</string>

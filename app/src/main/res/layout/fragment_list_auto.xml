@@ -7,7 +7,7 @@
     android:background="@color/purple_200"
     android:paddingHorizontal="20dp"
     android:paddingVertical="20dp"
-    tools:context=".ListViewAutoFragment">
+    tools:context=".presentation.view.fragment.ListViewAutoFragment">
 
     <TextView
         android:id="@+id/add_notes_tv"
