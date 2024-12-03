@@ -23,6 +23,14 @@
     <string name="error_length_text">Length should be min 3 max 255</string>
     <string name="error_symbols_text">Error symbols</string>
 
+    <string name="Next">Next</string>
+    <string name="back_main_activity">Back</string>
+    <string name="title_notes">Add notes</string>
+    <string name="add_notes">Add</string>
+    <string name="title_et">Brand auto</string>
+    <string name="message_et">Status</string>
+    <string name="delete_notes_button">Delete</string>
+
     <string name="edittext_name">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
 
