@@ -1,4 +1,4 @@
-package com.example.myhomework.ui.theme.adapter
+package com.example.myhomework.adapter
 
 import android.annotation.SuppressLint
 import android.util.Log

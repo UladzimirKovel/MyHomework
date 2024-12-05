@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("WrongViewCast")
+    @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val autoButton: TextView= findViewById(R.id.button_auto)
+        val autoButton: TextView= findViewById(R.id.button_list_auto)
         val buttonMain: Button = findViewById(R.id.button_main)
         val mainTextViewToLogin: TextView = findViewById(R.id.main_textview_to_login)
 

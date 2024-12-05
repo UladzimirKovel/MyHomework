@@ -8,7 +8,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myhomework.ui.theme.adapter.AutoAdapter
+import com.example.myhomework.adapter.AutoAdapter
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
