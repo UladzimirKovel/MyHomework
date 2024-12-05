@@ -21,6 +21,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         initialize()
+        initClick()
+    }
+
+    private fun initClick() {
 
         buttonReg?.setOnClickListener {
             handleRegistration()
