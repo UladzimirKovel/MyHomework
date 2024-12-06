@@ -31,8 +31,6 @@ class ListViewAuto : AppCompatActivity() {
         setupRecyclerView()
         initialize()
         initClick()
-
-
     }
 
     private fun setupRecyclerView() {
