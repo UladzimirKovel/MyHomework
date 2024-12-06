@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val mainTextViewToLogin: TextView = findViewById(R.id.main_textview_to_login)
 
         autoButton.setOnClickListener {
-            startActivity(Intent(this, ListViewAuto::class.java))
+            startActivity(Intent(this, ListViewAutoActivity::class.java))
         }
 
         buttonMain.setOnClickListener {

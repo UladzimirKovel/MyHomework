@@ -12,10 +12,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ListViewAuto : AppCompatActivity() {
+class ListViewAutoActivity : AppCompatActivity() {
 
     private var notesRecyclerView: RecyclerView? = null
     private var autoAdapter: AutoAdapter? = null
+
     private var backMainActivity: Button? = null
     private var addButton: Button? = null
     private var brandTextView: EditText? = null
@@ -37,7 +38,7 @@ class ListViewAuto : AppCompatActivity() {
 
         // Получаем изменяемый список заметок
         val notes = ListAuto.getNotes() as MutableList<Auto>
-        autoAdapter = AutoAdapter(notes)
+        autoAdapter = AutoAdapter(this,notes)
         notesRecyclerView?.adapter = autoAdapter
         notesRecyclerView?.layoutManager = LinearLayoutManager(this)
     }
