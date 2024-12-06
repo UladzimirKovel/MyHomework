@@ -10,61 +10,93 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SignUpActivity : AppCompatActivity() {
 
+    private var signupButtonMain: Button? = null
+    private var accTextViewSignup: TextView? = null
+    private var signupTextViewFirstname: EditText? = null
+    private var signupTextViewLastname: EditText? = null
+    private var signupTextViewEmail: EditText? = null
+    private var signupTextViewPassword: EditText? = null
+    private var buttonReg: Button? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val signupButtonMain: Button = findViewById(R.id.button_signup)
-        val accTextViewSignup: TextView = findViewById(R.id.main_textview_to_login)
+        initialize()
+        initClick()
+    }
 
-        val signupTextViewFirstname: EditText = findViewById(R.id.signup_textview_firstname)
-        val signupTextViewLastname: EditText = findViewById(R.id.signup_textview_lastname)
-        val signupTextViewEmail: EditText = findViewById(R.id.email)
-        val signupTextViewPassword: EditText = findViewById(R.id.password)
-        val buttonReg: Button = findViewById(R.id.login_button)
+    private fun validation(
+        signupTextViewFirstname: EditText,
+        signupTextViewLastname: EditText,
+        signupTextViewEmail: EditText,
+        signupTextViewPassword: EditText
+    ) {
+        val isNameValid = signupTextViewFirstname.text.toString().trim()
+        val isLastNameValid = signupTextViewLastname.text.toString().trim()
+        val emailString = signupTextViewEmail.text.toString().trim()
+        val isValidPassword = signupTextViewPassword.text.toString().trim()
 
-        buttonReg.setOnClickListener {
-            val isNameValid = signupTextViewFirstname.text.toString().trim()
-            val isLastNameValid = signupTextViewLastname.text.toString().trim()
-            val emailString = signupTextViewEmail.text.toString().trim()
-            val isValidPassword = signupTextViewPassword.text.toString().trim()
-
-            if (emailString == "" ||
-                isLastNameValid == "" ||
-                isNameValid == "" ||
-                isValidPassword == ""
-            ) {
+        when {
+            emailString == Constants.EMPTY_STRING ||
+                    isLastNameValid == Constants.EMPTY_STRING ||
+                    isNameValid == Constants.EMPTY_STRING ||
+                    isValidPassword == Constants.EMPTY_STRING -> {
                 Toast.makeText(
                     this, "Not all fields are filled in", Toast.LENGTH_SHORT
                 ).show()
-                return@setOnClickListener
-            } else if (!isEmailValid(emailString)) {
+            }
+
+            !isEmailValid(emailString) -> {
                 Toast.makeText(
                     this, "Error Email", Toast.LENGTH_LONG
                 ).show()
-                return@setOnClickListener
-            } else if ((signupTextViewPassword.length() < 8) ||
-                (signupTextViewFirstname.length() < 8) ||
-                (signupTextViewLastname.length() < 8)
-            ) {
+            }
+
+            signupTextViewPassword.length() < 8 ||
+                    signupTextViewFirstname.length() < 8 ||
+                    signupTextViewLastname.length() < 8 -> {
                 Toast.makeText(
                     this, "Length should be min 8", Toast.LENGTH_SHORT
                 ).show()
-                return@setOnClickListener
-            } else {
+            }
+
+            else -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
+    }
 
-        signupButtonMain.setOnClickListener {
-            finish()
+    private fun initClick() {
+
+        buttonReg?.setOnClickListener {
+            validation(signupTextViewFirstname!!,
+                signupTextViewLastname!!,
+                signupTextViewEmail!!,
+                signupTextViewPassword!!)
         }
-
-        accTextViewSignup.setOnClickListener {
+        signupButtonMain?.setOnClickListener {
+            startActivity(
+                Intent(this, MainActivity::class.java)
+            )
+        }
+        accTextViewSignup?.setOnClickListener {
             startActivity(
                 Intent(this, LoginActivity::class.java)
             )
         }
+    }
+
+    private fun initialize() {
+
+        signupButtonMain = findViewById(R.id.button_signup)
+        accTextViewSignup = findViewById(R.id.main_textview_to_login)
+        signupTextViewFirstname = findViewById(R.id.signup_textview_firstname)
+        signupTextViewLastname = findViewById(R.id.signup_textview_lastname)
+        signupTextViewEmail = findViewById(R.id.email)
+        signupTextViewPassword = findViewById(R.id.password)
+        buttonReg = findViewById(R.id.login_button)
     }
 }

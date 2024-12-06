@@ -1,4 +1,4 @@
-package com.example.myhomework.ui.theme.adapter
+package com.example.myhomework
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,9 +10,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myhomework.Auto
-import com.example.myhomework.ListAuto
-import com.example.myhomework.R
 
 
 class AutoAdapter(
@@ -29,8 +26,7 @@ class AutoAdapter(
             shareButton1.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val noteToShare = notes[position]
-                    val shareText = when (noteToShare) {
+                    val shareText = when (val noteToShare = notes[position]) {
                         is Auto.User -> "Brand: ${noteToShare.brand}, Status: ${noteToShare.status}"
                         is Auto.Card -> "Release Data: ${noteToShare.releaseData}"
                         else -> "Unknown note type"
@@ -79,8 +75,7 @@ class AutoAdapter(
             shareButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val noteToShare = notes[position]
-                    val shareText = when (noteToShare) {
+                    val shareText = when (val noteToShare = notes[position]) {
                         is Auto.User -> "Brand: ${noteToShare.brand}, Status: ${noteToShare.status}"
                         is Auto.Card -> "Release Data: ${noteToShare.releaseData}"
                         else -> "Unknown note type"
