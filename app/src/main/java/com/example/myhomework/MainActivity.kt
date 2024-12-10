@@ -9,17 +9,28 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var autoButton: TextView? = null
+    private var buttonMain: Button? = null
+    private var mainTextViewToLogin: TextView? = null
+
     @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val autoButton: TextView= findViewById(R.id.button_list_auto)
+        initialize()
+        initClick()
+    }
+
+    private fun initClick() {
+
+        val autoButton: TextView = findViewById(R.id.button_list_auto)
         val buttonMain: Button = findViewById(R.id.button_main)
         val mainTextViewToLogin: TextView = findViewById(R.id.main_textview_to_login)
 
         autoButton.setOnClickListener {
-            startActivity(Intent(this, ListViewAuto::class.java))
+            startActivity(Intent(this, ListViewAutoActivity::class.java))
         }
 
         buttonMain.setOnClickListener {
@@ -29,5 +40,11 @@ class MainActivity : AppCompatActivity() {
         mainTextViewToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+    }
+
+    private fun initialize() {
+        autoButton = findViewById(R.id.button_list_auto)
+        buttonMain = findViewById(R.id.button_main)
+        mainTextViewToLogin = findViewById(R.id.main_textview_to_login)
     }
 }
