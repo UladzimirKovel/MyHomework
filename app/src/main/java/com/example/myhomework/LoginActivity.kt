@@ -24,8 +24,7 @@ class LoginActivity : AppCompatActivity() {
         initClick()
     }
 
-    private fun initClick() {
-
+    private fun initClick(){
         buttonReg?.setOnClickListener {
             handleRegistration()
         }
@@ -76,4 +75,5 @@ class LoginActivity : AppCompatActivity() {
         loginTextviewEmail = findViewById(R.id.login_textview_email)
         loginTextviewPassword = findViewById(R.id.login_textview_password)
     }
+
 }

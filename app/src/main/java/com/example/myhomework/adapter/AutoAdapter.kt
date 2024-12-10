@@ -1,4 +1,4 @@
-package com.example.myhomework.adapter
+package com.example.myhomework.ui.theme.adapter
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -50,12 +50,9 @@ class AutoAdapter(private val notes: MutableList<Auto>) :
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
-        holder.apply {
-            brandTextView.text = note.brand
-            statusTextView.text = note.status
-            releaseData.text = note.releaseData
-        }
-
+        holder.brandTextView.text = note.brand
+        holder.statusTextView.text = note.status
+        holder.releaseData.text = note.releaseData
     }//Ф-ия,которая будет отрисовывать наш Holder в нашем RecyclerView
 
     override fun getItemCount(): Int {

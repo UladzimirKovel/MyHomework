@@ -32,4 +32,21 @@
 
     <dimen name="margin_20dp">20dp</dimen>
 
+    <dimen name="acb_width_270dp">270dp</dimen>
+    <dimen name="acb_height_50dp">50dp</dimen>
+    <dimen name="acb_margin_top_15dp">15dp</dimen>
+
+    <dimen name="acb_text_size_18sp">18sp</dimen>
+    <dimen name="tv_text_size_20sp">20sp</dimen>
+
+    <dimen name="margin_top_8dp">8dp</dimen>
+    <dimen name="button_margin_start_150dp">150dp</dimen>
+
+    <dimen name="button_margin_top_170dp">170dp</dimen>
+
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_top_30dp">30dp</dimen>
+
+    <dimen name="rv_height_0dp">0dp</dimen>
+    <dimen name="pudding_10dp">10dp</dimen>
 </resources>
