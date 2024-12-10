@@ -32,11 +32,15 @@ class ListViewAutoFragment : Fragment() {
     ): View? {
 
         val currentView = inflater.inflate(R.layout.fragment_list_auto, container, false)
-
-        setupListener(currentView)
-        noteRecycler(currentView)
-
         return currentView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupListener()
+        noteRecycler()
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -65,32 +69,34 @@ class ListViewAutoFragment : Fragment() {
             .commit()
     }
 
-    private fun setupListener(view: View) {
+    private fun setupListener() {
 
-        val backMainActivity: Button = view.findViewById(R.id.back_main_fragment)
-        val addButton: Button = view.findViewById(R.id.add_notes_button)
-        val brandTextView: EditText = view.findViewById(R.id.title_notes_tv)
-        val messageTextView: EditText = view.findViewById(R.id.message_notes_tv)
+        val backMainActivity: Button? = view?.findViewById(R.id.back_main_fragment)
+        val addButton: Button? = view?.findViewById(R.id.add_notes_button)
+        val brandTextView: EditText? = view?.findViewById(R.id.title_notes_tv)
+        val messageTextView: EditText? = view?.findViewById(R.id.message_notes_tv)
 
-        addButton.setOnClickListener {
-            handleAddNote(brandTextView, messageTextView)
+        addButton?.setOnClickListener {
+            if (brandTextView != null && messageTextView != null) {
+                handleAddNote(brandTextView, messageTextView)
+            }
         }
 
-        backMainActivity.setOnClickListener {
+        backMainActivity?.setOnClickListener {
             backParent()
         }
     }
 
-    private fun noteRecycler(view: View) {
-        notesRecyclerView = view.findViewById(R.id.notes_recycler_view)
+    private fun noteRecycler() {
+        notesRecyclerView = view?.findViewById(R.id.notes_recycler_view)
 
         // Получаем изменяемый список заметок
         val notes = ListAuto.getNotes() as MutableList<Auto>
-        notesRecyclerView?.layoutManager = LinearLayoutManager(view.context)
+        notesRecyclerView?.layoutManager = LinearLayoutManager(view?.context)
         autoAdapter = AutoAdapter(notes)
         notesRecyclerView?.adapter = autoAdapter
 
-        val smoothScroller = object : LinearSmoothScroller(view.context) {
+        val smoothScroller = object : LinearSmoothScroller(view?.context) {
             override fun getVerticalSnapPreference(): Int {
                 return SNAP_TO_END
             }

@@ -22,9 +22,13 @@ class LoginFragment : Fragment() {
 
         val currentView = inflater.inflate(R.layout.fragment_login, container, false)
 
-        setupListener(currentView)
-
         return currentView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupListener()
     }
 
     private fun validateInput(
@@ -57,28 +61,30 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setupListener(view: View){
-        val loginButtonMain: Button = view.findViewById(R.id.button_main)
-        val accTextviewLogin: TextView = view.findViewById(R.id.main_textview_to_login)
-        val buttonReg: Button = view.findViewById(R.id.login_button)
-        val loginTextviewEmail: EditText = view.findViewById(R.id.login_textview_email)
-        val loginTextviewPassword: EditText = view.findViewById(R.id.login_textview_password)
+    private fun setupListener(){
+        val loginButtonMain: Button? = view?.findViewById(R.id.button_main)
+        val accTextviewLogin: TextView? = view?.findViewById(R.id.main_textview_to_login)
+        val buttonReg: Button? = view?.findViewById(R.id.login_button)
+        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
+        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 
-        buttonReg.setOnClickListener {
-            validateInput(loginTextviewEmail, loginTextviewPassword)
+        buttonReg?.setOnClickListener {
+            if (loginTextviewEmail != null && loginTextviewPassword != null) {
+                    validateInput(loginTextviewEmail, loginTextviewPassword)
+            }
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, SignUpFragment(), "Login")
                 .commit()
         }
 
-        loginButtonMain.setOnClickListener {
+        loginButtonMain?.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, MainFragment(), "Login")
                 .addToBackStack(null)
                 .commit()
         }
 
-        accTextviewLogin.setOnClickListener {
+        accTextviewLogin?.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, SignUpFragment(), "Login")
                 .addToBackStack(null)
