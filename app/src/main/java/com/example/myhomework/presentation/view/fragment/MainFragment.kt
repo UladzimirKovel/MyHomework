@@ -4,49 +4,89 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.myhomework.R
+import com.example.myhomework.databinding.FragmentMainBinding
+import com.example.myhomework.presentation.action.MainFragmentActions
+import com.example.myhomework.presentation.view_model.MyViewModel
 
+private var _binding: FragmentMainBinding? = null
+private val binding get() = _binding!!
+
+private var viewModel: MyViewModel? = null
 
 class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val currentView = inflater.inflate(R.layout.fragment_main, container, false)
+    ): View {
+//        val currentView = inflater.inflate(R.layout.fragment_main, container, false)
+//        setupListener(currentView)
+//        return currentView
 
-        setupListener(currentView)
+        viewModel =
+            ViewModelProvider.AndroidViewModelFactory.getInstance(
+                application = requireActivity()
+                    .application
+            )
+                .create(
+                    MyViewModel::class.java
+                )
 
-        return currentView
+        _binding = FragmentMainBinding.inflate(this.layoutInflater)
+
+        return binding.root
     }
-    private fun setupListener(view: View) {
 
-        val autoButton: TextView = view.findViewById(R.id.fragment_button_auto)
-        val buttonMain: Button = view.findViewById(R.id.fragment_button_main)
-        val mainTextViewToLogin: TextView =view.findViewById(R.id.fragment_main_textview_to_login)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        autoButton.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, ListViewAutoFragment(), "AutoList")
+        setupListener()
+
+        viewModel?.liveData?.observe(viewLifecycleOwner) {
+            when {
+                it.buttonAuto -> goToNextFragment(ListViewAutoFragment(), "ListAuto")
+                it.buttonSignUp -> goToNextFragment(SignUpFragment(), "SignUp")
+                it.buttonLogin -> goToNextFragment(LoginFragment(), "Login")
+            }
+        }
+    }
+
+    private fun setupListener() {
+
+        binding.fragmentButtonAuto.setOnClickListener {
+            viewModel?.handleAction(MainFragmentActions.GoToListAutoFragment)
+
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, ListViewAutoFragment(), "AutoList")
+//                .addToBackStack(null)
+//                .commit()
+        }
+        binding.fragmentButtonSignUp.setOnClickListener {
+            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
+
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                .addToBackStack(null)
+//                .commit()
+        }
+
+        binding.fragmentMainTextviewToLogin.setOnClickListener {
+            viewModel?.handleAction(MainFragmentActions.GoToLoginFragment)
+
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, LoginFragment(), "Login")
+//                .addToBackStack(null)
+//                .commit()
+        }
+    }
+
+    private fun goToNextFragment(fragment: Fragment, tag: String) {
+        parentFragmentManager.beginTransaction()
+                .replace(R.id.newFragmentView, fragment, tag)
                 .addToBackStack(null)
                 .commit()
-        }
-        buttonMain.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack(null)
-                .commit()
-
-        }
-
-        mainTextViewToLogin.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                .addToBackStack(null)
-                .commit()
-        }
     }
 }
