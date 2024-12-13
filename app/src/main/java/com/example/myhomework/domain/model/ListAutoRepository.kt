@@ -2,7 +2,7 @@ package com.example.myhomework.domain.model
 
 import android.util.Log
 
-object ListAuto : Auto { //singleton
+class ListAutoRepository : Auto {
 
     private val listAuto = mutableListOf(
         Auto.User("Audi", "used auto, Hatchback"),

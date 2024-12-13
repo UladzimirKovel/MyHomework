@@ -1,25 +1,24 @@
 package com.example.myhomework.presentation.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhomework.domain.model.Auto
-import com.example.myhomework.domain.model.ListAuto
+import com.example.myhomework.domain.model.ListAutoRepository
 import com.example.myhomework.R
 
 
 class AutoAdapter(
+    private val context: Context,
     private val notes: MutableList<Auto>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    @SuppressLint("NotifyDataSetChanged")
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val releaseData: TextView = itemView.findViewById(R.id.info_block_view)
         private val deleteButton1: Button = itemView.findViewById(R.id.delete_notes_data)
@@ -27,91 +26,29 @@ class AutoAdapter(
 
         init {
             shareButton1.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val noteToShare = notes[position]
-                    val shareText = when (noteToShare) {
-                        is Auto.User -> "Brand: ${noteToShare.brand}, Status: ${noteToShare.status}"
-                        is Auto.Card -> "Release Data: ${noteToShare.releaseData}"
-                        else -> "Unknown note type"
-                    }
-                    val shareIntent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, shareText)
-                        type = "text/plain"
-                    }
-                    itemView.context.startActivity(
-                        Intent.createChooser(
-                            shareIntent, "Share note via"
-                        )
-                    )
-                }
+                shareNote(adapterPosition)
             }
 
             deleteButton1.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    try {
-                        val noteToRemove =
-                            notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
-                        ListAuto.removeNote(noteToRemove)// Удаляем заметку из репозитория
-                        notifyDataSetChanged()// Уведомляем адаптер о том, что данные изменились
-                    } catch (e: Exception) {
-                        Log.e("NotesAdapter", "Error deleting note: ${e.message}")
-                        Toast.makeText(itemView.context, "Error deleting note", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                }
+                deleteNote(adapterPosition)
             }
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val brandTextView: TextView = itemView.findViewById(R.id.brand_tv)
         val statusTextView: TextView = itemView.findViewById(R.id.status_tv)
 
-        /*val releaseData: TextView = itemView.findViewById(R.id.release_date_tv)*/
         private val deleteButton: Button = itemView.findViewById(R.id.delete_notes_data)
         private val shareButton: Button = itemView.findViewById(R.id.share_note)
 
         init {
             shareButton.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val noteToShare = notes[position]
-                    val shareText = when (noteToShare) {
-                        is Auto.User -> "Brand: ${noteToShare.brand}, Status: ${noteToShare.status}"
-                        is Auto.Card -> "Release Data: ${noteToShare.releaseData}"
-                        else -> "Unknown note type"
-                    }
-                    val shareIntent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, shareText)
-                        type = "text/plain"
-                    }
-                    itemView.context.startActivity(
-                        Intent.createChooser(
-                            shareIntent, "Share note via"
-                        )
-                    )
-                }
+                shareNote(adapterPosition)
             }
 
             deleteButton.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    try {
-                        val noteToRemove =
-                            notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
-                        ListAuto.removeNote(noteToRemove)// Удаляем заметку из репозитория
-                        notifyDataSetChanged()// Уведомляем адаптер о том, что данные изменились
-                    } catch (e: Exception) {
-                        Log.e("NotesAdapter", "Error deleting note: ${e.message}")
-                        Toast.makeText(itemView.context, "Error deleting note", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                }
+                deleteNote(adapterPosition)
             }
         }
     }
@@ -161,5 +98,38 @@ class AutoAdapter(
 
     private enum class AdapterType {
         USER_TYPE, CARD_TYPE
+    }
+
+    private fun shareNote(position: Int) {
+
+        if (position != RecyclerView.NO_POSITION) {
+            val shareText = when (val noteToShare = notes[position]) {
+                is Auto.User -> "Brand: ${noteToShare.brand}, Status: ${noteToShare.status}"
+                is Auto.Card -> "Release Data: ${noteToShare.releaseData}"
+                else -> "Unknown note type"
+            }
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, shareText)
+                type = "text/plain"
+            }
+            context.startActivity(
+                Intent.createChooser(
+                    shareIntent, "Share note via"
+                )
+            )
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun deleteNote(position: Int) {
+
+        if (position != RecyclerView.NO_POSITION) {
+
+            val noteToRemove =
+                notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
+            ListAutoRepository.removeNote(noteToRemove)// Удаляем заметку из репозитория
+            notifyDataSetChanged()// Уведомляем адаптер о том, что данные изменились
+        }
     }
 }

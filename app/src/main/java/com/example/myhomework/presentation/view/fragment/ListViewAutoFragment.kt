@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhomework.R
 import com.example.myhomework.domain.model.Auto
-import com.example.myhomework.domain.model.ListAuto
+import com.example.myhomework.domain.model.ListAutoRepository
 import com.example.myhomework.presentation.adapter.AutoAdapter
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -51,12 +51,12 @@ class ListViewAutoFragment : Fragment() {
 
         if (title.isNotEmpty() && title.isNotBlank()) {
             val newAuto = Auto.User(title, text)
-            ListAuto.addNote(newAuto) //Добавляем заметку в репозиторий
+            ListAutoRepository.addNote(newAuto) //Добавляем заметку в репозиторий
             autoAdapter?.notifyDataSetChanged() //Уведомляем адаптер о том, что данные изменились
             brandTextView.text.clear() // Очищаем поле ввода заголовка
             messageTextView.text.clear() //Очищаем поле ввода текста
             val newAutoDate = Auto.Card(date)
-            ListAuto.addNote(newAutoDate)
+            ListAutoRepository.addNote(newAutoDate)
             autoAdapter?.notifyDataSetChanged()
             SimpleDateFormat.DATE_FIELD.toString()
         }
@@ -91,7 +91,7 @@ class ListViewAutoFragment : Fragment() {
         notesRecyclerView = view?.findViewById(R.id.notes_recycler_view)
 
         // Получаем изменяемый список заметок
-        val notes = ListAuto.getNotes() as MutableList<Auto>
+        val notes = ListAutoRepository.getNotes() as MutableList<Auto>
         notesRecyclerView?.layoutManager = LinearLayoutManager(view?.context)
         autoAdapter = AutoAdapter(notes)
         notesRecyclerView?.adapter = autoAdapter
