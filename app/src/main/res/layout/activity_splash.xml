@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/space"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/dimen_200dp"
+        android:layout_height="@dimen/dimen_200dp"
         android:background="@drawable/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

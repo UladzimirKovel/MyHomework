@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyHomework</string>
 
     <string name="textview_title_main">Spiice</string>
@@ -35,5 +35,10 @@
     <string name="edittext_name">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
     <string name="info_block">Info block</string>
+
+    <string name="first_onboarding">Hello.It my first project</string>
+    <string name="second_onboarding" tools:ignore="StringEscaping">Don"t judge it too harshly</string>
+    <string name="third_onboarding">Be the first to review</string>
+    <string name="next_screen">next</string>
 
 </resources>
