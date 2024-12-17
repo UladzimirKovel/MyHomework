@@ -35,7 +35,7 @@ class MainFragment : Fragment() {
                     MyViewModel::class.java
                 )
 
-        _binding = FragmentMainBinding.inflate(this.layoutInflater)
+        _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }

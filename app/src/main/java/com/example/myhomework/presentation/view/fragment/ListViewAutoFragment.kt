@@ -40,7 +40,6 @@ class ListViewAutoFragment : Fragment() {
 
         setupListener()
         noteRecycler()
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -62,7 +61,7 @@ class ListViewAutoFragment : Fragment() {
         }
     }
 
-    private fun backParent(){
+    private fun backParent() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.newFragmentView, MainFragment(), "Main")
             .addToBackStack(null)
@@ -93,7 +92,7 @@ class ListViewAutoFragment : Fragment() {
         // Получаем изменяемый список заметок
         val notes = ListAutoRepository.getNotes() as MutableList<Auto>
         notesRecyclerView?.layoutManager = LinearLayoutManager(view?.context)
-        autoAdapter = AutoAdapter(notes)
+        autoAdapter = AutoAdapter(requireContext(),notes)
         notesRecyclerView?.adapter = autoAdapter
 
         val smoothScroller = object : LinearSmoothScroller(view?.context) {
