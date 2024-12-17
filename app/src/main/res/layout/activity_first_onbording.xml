@@ -8,6 +8,19 @@
     android:background="@color/purple_200"
     tools:context=".FirstOnboardingActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/first_onboarding"
+        android:textSize="@dimen/linear_layout_padding_40sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_image" />
+
     <ImageView
         android:id="@+id/second_image"
         android:layout_width="@dimen/button_margin_start_150dp"
@@ -18,16 +31,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/first_onboarding"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/linear_layout_padding_40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/second_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

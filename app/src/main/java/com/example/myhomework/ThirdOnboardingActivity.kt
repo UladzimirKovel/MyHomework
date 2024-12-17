@@ -18,14 +18,19 @@ class ThirdOnboardingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_third_onboarding)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
+            delay(5001)
             goNext()
         }
     }
 
     private fun goNext() {
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@ThirdOnboardingActivity, MainActivity::class.java))
+            startActivity(
+                Intent(
+                    this@ThirdOnboardingActivity,
+                    MainActivity::class.java
+                )
+            )
             finish()
         }, 0)
     }

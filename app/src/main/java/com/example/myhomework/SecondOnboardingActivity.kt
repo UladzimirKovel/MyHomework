@@ -12,14 +12,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SecondOnboardingActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_second_onboarding)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
+            delay(5001)
             goNext()
         }
     }

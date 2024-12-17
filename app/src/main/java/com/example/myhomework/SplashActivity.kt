@@ -19,14 +19,19 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(3500)
+            delay(2900)
             goNext()
         }
     }
 
     private fun goNext() {
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@SplashActivity, FirstOnboardingActivity::class.java))
+            startActivity(
+                Intent(
+                    this@SplashActivity,
+                    FirstOnboardingActivity::class.java
+                )
+            )
             finish()
         }, 0)
     }

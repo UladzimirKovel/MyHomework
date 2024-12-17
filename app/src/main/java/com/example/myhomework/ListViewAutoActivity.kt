@@ -69,6 +69,14 @@ class ListViewAutoActivity : AppCompatActivity() {
         }
     }
 
+    private fun initialize() {
+        backMainActivity = findViewById(R.id.back_main_activity)
+        addButton = findViewById(R.id.add_notes_button)
+        brandTextView = findViewById(R.id.title_notes_tv)
+        messageTextView = findViewById(R.id.message_notes_tv)
+
+    }
+
     private fun initClick() {
 
         val pbAdd = findViewById<ProgressBar>(R.id.pbAdd)
@@ -87,14 +95,6 @@ class ListViewAutoActivity : AppCompatActivity() {
                 Intent(this, MainActivity::class.java)
             )
         }
-    }
-
-    private fun initialize() {
-        backMainActivity = findViewById(R.id.back_main_activity)
-        addButton = findViewById(R.id.add_notes_button)
-        brandTextView = findViewById(R.id.title_notes_tv)
-        messageTextView = findViewById(R.id.message_notes_tv)
-
     }
 }
 
