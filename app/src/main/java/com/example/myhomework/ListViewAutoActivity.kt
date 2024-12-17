@@ -5,14 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -43,7 +38,7 @@ class ListViewAutoActivity : AppCompatActivity() {
 
         // Получаем изменяемый список заметок
         val notes = ListAuto.getNotes() as MutableList<Auto>
-        autoAdapter = AutoAdapter(this, notes)
+        autoAdapter = AutoAdapter(this,notes)
         notesRecyclerView?.adapter = autoAdapter
         notesRecyclerView?.layoutManager = LinearLayoutManager(this)
     }
@@ -70,16 +65,8 @@ class ListViewAutoActivity : AppCompatActivity() {
     }
 
     private fun initClick() {
-
-        val pbAdd = findViewById<ProgressBar>(R.id.pbAdd)
-
         addButton?.setOnClickListener {
             handleAddNote(brandTextView!!, messageTextView!!)
-
-            CoroutineScope(Dispatchers.Main).launch {
-                delay(3000)
-                pbAdd.isIndeterminate = true
-            }
         }
 
         backMainActivity?.setOnClickListener {
@@ -94,7 +81,6 @@ class ListViewAutoActivity : AppCompatActivity() {
         addButton = findViewById(R.id.add_notes_button)
         brandTextView = findViewById(R.id.title_notes_tv)
         messageTextView = findViewById(R.id.message_notes_tv)
-
     }
 }
 
