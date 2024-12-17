@@ -18,7 +18,7 @@ class FirstOnboardingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_first_onbording)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
+            delay(5000)
             goNext()
         }
     }
