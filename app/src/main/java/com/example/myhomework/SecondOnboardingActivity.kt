@@ -19,7 +19,7 @@ class SecondOnboardingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second_onboarding)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
+            delay(3000)
             goNext()
         }
     }

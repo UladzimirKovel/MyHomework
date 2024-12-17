@@ -6,10 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -18,16 +14,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
-            goNext()
-        }
-    }
-
-    private fun goNext() {
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@SplashActivity, FirstOnboardingActivity::class.java))
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
-        }, 0)
+        }, 1300)
     }
 }
