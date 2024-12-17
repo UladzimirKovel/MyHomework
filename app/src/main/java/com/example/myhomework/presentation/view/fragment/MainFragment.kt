@@ -89,4 +89,9 @@ class MainFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
     }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }

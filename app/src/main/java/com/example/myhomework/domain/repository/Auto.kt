@@ -1,4 +1,4 @@
-package com.example.myhomework.domain.model
+package com.example.myhomework.domain.repository
 
 sealed interface Auto {
     data class User(

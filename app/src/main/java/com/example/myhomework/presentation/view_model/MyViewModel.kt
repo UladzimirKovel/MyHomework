@@ -16,10 +16,10 @@ class MyViewModel : ViewModel() {
                 CurrentState(buttonAuto = true)
 
             MainFragmentActions.GoToLoginFragment -> _liveData.value =
-                CurrentState(buttonAuto = false, buttonSignUp = true, buttonLogin = false)
+                CurrentState(buttonAuto = false, buttonSignUp = false, buttonLogin = true)
 
             MainFragmentActions.GoToSignUpFragment -> _liveData.value =
-                CurrentState(buttonAuto = false, buttonSignUp = false, buttonLogin = true)
+                CurrentState(buttonAuto = false, buttonSignUp = true, buttonLogin = false)
         }
     }
 

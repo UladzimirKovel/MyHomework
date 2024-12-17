@@ -1,4 +1,4 @@
-package com.example.myhomework.domain.model
+package com.example.myhomework.domain.repository
 
 import android.util.Log
 

@@ -76,4 +76,5 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    implementation("io.insert-koin:koin-android:3.5.3")
 }

@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhomework.R
-import com.example.myhomework.domain.model.Auto
-import com.example.myhomework.domain.model.ListAutoRepository
+import com.example.myhomework.domain.repository.Auto
+import com.example.myhomework.domain.repository.ListAutoRepository
 import com.example.myhomework.presentation.adapter.AutoAdapter
+import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -23,6 +24,7 @@ class ListViewAutoFragment : Fragment() {
 
     private var notesRecyclerView: RecyclerView? = null
     private var autoAdapter: AutoAdapter? = null
+    private val repository : ListAutoRepository by inject()
 
     @SuppressLint("NotifyDataSetChanged", "CommitTransaction", "MissingInflatedId")
     override fun onCreateView(
@@ -49,13 +51,15 @@ class ListViewAutoFragment : Fragment() {
         val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
 
         if (title.isNotEmpty() && title.isNotBlank()) {
+
             val newAuto = Auto.User(title, text)
-            ListAutoRepository.addNote(newAuto) //Добавляем заметку в репозиторий
+            repository.addNote(newAuto) //Добавляем заметку в репозиторий
             autoAdapter?.notifyDataSetChanged() //Уведомляем адаптер о том, что данные изменились
             brandTextView.text.clear() // Очищаем поле ввода заголовка
             messageTextView.text.clear() //Очищаем поле ввода текста
+
             val newAutoDate = Auto.Card(date)
-            ListAutoRepository.addNote(newAutoDate)
+            repository.addNote(newAutoDate)
             autoAdapter?.notifyDataSetChanged()
             SimpleDateFormat.DATE_FIELD.toString()
         }
@@ -90,7 +94,7 @@ class ListViewAutoFragment : Fragment() {
         notesRecyclerView = view?.findViewById(R.id.notes_recycler_view)
 
         // Получаем изменяемый список заметок
-        val notes = ListAutoRepository.getNotes() as MutableList<Auto>
+        val notes = repository.getNotes() as MutableList<Auto>
         notesRecyclerView?.layoutManager = LinearLayoutManager(view?.context)
         autoAdapter = AutoAdapter(requireContext(),notes)
         notesRecyclerView?.adapter = autoAdapter

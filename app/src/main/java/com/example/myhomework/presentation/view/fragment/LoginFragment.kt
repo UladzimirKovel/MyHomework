@@ -10,19 +10,25 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhomework.R
+import com.example.myhomework.databinding.FragmentLoginBinding
 import com.example.myhomework.domain.use_case.isEmailValid
 
 class LoginFragment : Fragment() {
+
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+//        val currentView = inflater.inflate(R.layout.fragment_login, container, false)
+//        return currentView
 
-        val currentView = inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-        return currentView
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +45,12 @@ class LoginFragment : Fragment() {
         val validationResPasswordSignup = password.text.toString().trim()
 
         return when {
-            emailString.isEmpty() || validationResPasswordSignup.isEmpty() -> {
+            emailString.isEmpty() -> {
+                Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
+                false
+            }
+
+            validationResPasswordSignup.isEmpty() -> {
                 Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
                 false
             }
@@ -49,10 +60,10 @@ class LoginFragment : Fragment() {
                 false
             }
 
-            password.length() < 8 || password.length() > 255 -> {
+            password.length() !in 8..30 -> {
                 Toast.makeText(
                     context,
-                    "Password length should be from 8 to 255 symbols ",
+                    "Password length should be from 8 to 30 symbols",
                     Toast.LENGTH_LONG
                 ).show()
                 false

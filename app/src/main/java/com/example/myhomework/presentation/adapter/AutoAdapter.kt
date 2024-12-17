@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhomework.R
-import com.example.myhomework.domain.model.Auto
-import com.example.myhomework.domain.model.ListAutoRepository
+import com.example.myhomework.domain.repository.Auto
+import com.example.myhomework.domain.repository.ListAutoRepository
 
 
 class AutoAdapter(
@@ -126,8 +126,7 @@ class AutoAdapter(
 
         if (position != RecyclerView.NO_POSITION) {
 
-            val noteToRemove =
-                notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
+            val noteToRemove = notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
             ListAutoRepository.removeNote(noteToRemove)// Удаляем заметку из репозитория
             notifyDataSetChanged()// Уведомляем адаптер о том, что данные изменились
         }
