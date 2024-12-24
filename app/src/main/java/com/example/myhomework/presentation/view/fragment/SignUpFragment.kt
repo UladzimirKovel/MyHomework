@@ -20,10 +20,13 @@ class SignUpFragment : Fragment() {
     ): View? {
 
         val currentView = inflater.inflate(R.layout.fragment_sign_up, container, false)
-
-        setupListener(currentView)
-
         return currentView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupListener(requireView())
     }
 
     private fun setupListener(view: View) {

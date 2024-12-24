@@ -21,7 +21,6 @@ class LoginFragment : Fragment() {
     ): View? {
 
         val currentView = inflater.inflate(R.layout.fragment_login, container, false)
-
         return currentView
     }
 
