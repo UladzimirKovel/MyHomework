@@ -108,17 +108,18 @@ class LoginFragment : Fragment() {
         }
 
         loginButtonMain?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Main")
-                .addToBackStack(null)
-                .commit()
+            goToNextFragment(MainFragment(), "Main")
         }
 
         accTextviewLogin?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack(null)
-                .commit()
+            goToNextFragment(SignUpFragment(), "SignUp")
         }
+    }
+
+    private fun goToNextFragment(fragment: Fragment, tag: String) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.newFragmentView, fragment, tag)
+            .addToBackStack(null)
+            .commit()
     }
 }

@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
 //
 //    private var viewModel: MyViewModel? = null
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-//        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
 //            .create(MyViewModel::class.java)
 //        _binding = ActivityMainBinding.inflate(this.layoutInflater)
 //        setContentView(binding.root)
