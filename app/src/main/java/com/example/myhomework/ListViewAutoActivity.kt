@@ -7,10 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -84,7 +83,7 @@ class ListViewAutoActivity : AppCompatActivity() {
         addButton?.setOnClickListener {
             handleAddNote(brandTextView!!, messageTextView!!)
 
-            CoroutineScope(Dispatchers.Main).launch {
+            lifecycleScope.launch {
                 delay(3000)
                 pbAdd.isIndeterminate = true
             }
