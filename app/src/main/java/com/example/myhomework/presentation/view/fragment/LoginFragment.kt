@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhomework.R
-import com.example.myhomework.data.repository.UserSharedPref
+//import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentLoginBinding
-import com.example.myhomework.domain.use_case.isEmailValid
-import org.koin.android.ext.android.inject
+import com.example.myhomework.presentation.view_model.LoginFragmentViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+//import org.koin.android.ext.android.inject
 
 class LoginFragment : Fragment() {
 
+    //    private val sharedPref: UserSharedPref by inject()
+    private val loginViewModel: LoginFragmentViewModel by viewModel()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val sharedPref : UserSharedPref by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,81 +38,28 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupListener()
+        setupListener(binding.root)
     }
 
-    private fun validateInput(
-        email: EditText,
-        password: EditText
-    ): Boolean {
-        val emailString = email.text.toString().trim()
-        val validationResPasswordSignup = password.text.toString().trim()
+    private fun setupListener(view: View) {
 
-        return when {
-            emailString.isEmpty() -> {
-                Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
+        val loginButtonMain: Button = view.findViewById(R.id.button_main)
+        val accTextviewLogin: TextView = view.findViewById(R.id.main_textview_to_login)
+        val buttonReg: Button = view.findViewById(R.id.login_button)
+        val loginTextviewEmail: EditText = view.findViewById(R.id.login_textview_email)
+        val loginTextviewPassword: EditText = view.findViewById(R.id.login_textview_password)
 
-            validationResPasswordSignup.isEmpty() -> {
-                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
+        buttonReg.setOnClickListener {
+            if(loginViewModel.validateInput(loginTextviewEmail, loginTextviewPassword, requireContext()))
 
-            !isEmailValid(emailString) -> {
-                Toast.makeText(context, "Incorrect Email validation", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            password.length() !in 8..30 -> {
-                Toast.makeText(
-                    context,
-                    "Password length should be from 8 to 30 symbols",
-                    Toast.LENGTH_LONG
-                ).show()
-                false
-            }
-
-            !isEmailExist(emailString, validationResPasswordSignup) -> {
-                Toast.makeText(context, "Incorrect Email", Toast.LENGTH_LONG).show()
-                false
-            }
-            else -> true
-        }
-    }
-
-    private fun isEmailExist(email: String, password : String): Boolean {
-        val userData = sharedPref.getUser()
-        val savedEmail = userData["email"]
-        val savedPassword = userData["password"]
-        return if (savedEmail == email) {
-            true
-        } else if(savedPassword == password){
-            true
-        } else false
-    }
-
-    private fun setupListener(){
-        val loginButtonMain: Button? = view?.findViewById(R.id.button_main)
-        val accTextviewLogin: TextView? = view?.findViewById(R.id.main_textview_to_login)
-        val buttonReg: Button? = view?.findViewById(R.id.login_button)
-        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
-        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
-
-        buttonReg?.setOnClickListener {
-            if (loginTextviewEmail != null && loginTextviewPassword != null) {
-                    validateInput(loginTextviewEmail, loginTextviewPassword)
-            }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "Login")
-                .commit()
+            goToNextFragment(SignUpFragment(), "Login")
         }
 
-        loginButtonMain?.setOnClickListener {
+        loginButtonMain.setOnClickListener {
             goToNextFragment(MainFragment(), "Main")
         }
 
-        accTextviewLogin?.setOnClickListener {
+        accTextviewLogin.setOnClickListener {
             goToNextFragment(SignUpFragment(), "SignUp")
         }
     }

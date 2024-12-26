@@ -10,7 +10,7 @@
     <string name="signup_textview_lastname">Last name</string>
     <string name="signup_textview_email">Email</string>
     <string name="signup_textview_password">Password</string>
-    <string name="signup_button_main">Sign-up</string>
+    <string name="signup_button_main">Back to menu</string>
     <string name="acc_textview_signup">You have an account? <b>Log-in</b></string>
 
     <string name="login_textview_title">Log-in</string>

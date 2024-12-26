@@ -5,19 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhomework.R
 import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentSignUpBinding
-import com.example.myhomework.domain.use_case.isEmailValid
+import com.example.myhomework.presentation.view_model.SignUpFragmentViewModel
 import org.koin.android.ext.android.inject
 
 class SignUpFragment : Fragment() {
-//    private var sharedPref : UserSharedPref? = null
-    private val sharedPref : UserSharedPref by inject()
+    //    private var sharedPref : UserSharedPref? = null
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+    private val signUpModel : SignUpFragmentViewModel by inject()
+    private val sharedPref : UserSharedPref by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,11 +46,12 @@ class SignUpFragment : Fragment() {
         val signupTextViewPassword: EditText = view.findViewById(R.id.password)
 
         binding.loginButton.setOnClickListener {
-            if (validateInput(
+            if (signUpModel.validateInput(
                     signupTextViewFirstname,
                     signupTextViewLastname,
                     signupTextViewEmail,
-                    signupTextViewPassword
+                    signupTextViewPassword,
+                    requireContext()
                 )
             ) {
                 sharedPref.saveUser(
@@ -59,97 +60,23 @@ class SignUpFragment : Fragment() {
                     signupTextViewEmail.toString(),
                     signupTextViewPassword.toString()
                 )
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                    .commit()
+                goToNextFragment(LoginFragment(), "Login")
             }
         }
 
         binding.buttonSignup.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Login")
-                .commit()
+            goToNextFragment(MainFragment(), "Main")
         }
 
         binding.mainTextviewToLogin.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                .commit()
+            goToNextFragment(LoginFragment(), "Login")
         }
-
     }
 
-    private fun validateInput(
-        firstName: EditText,
-        lastName: EditText,
-        email: EditText,
-        password: EditText
-    ): Boolean {
-
-        val isNameValid = firstName.text.toString().trim()
-        val isLastNameValid = lastName.text.toString().trim()
-        val emailString = email.text.toString().trim()
-        val isValidPassword = password.text.toString().trim()
-
-        return when {
-            emailString.isEmpty()  -> {
-                Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            isValidPassword.isEmpty() -> {
-                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            isNameValid.isEmpty() -> {
-                Toast.makeText(context, "First Name string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            isLastNameValid.isEmpty() -> {
-                Toast.makeText(context, "Last Nave string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            !isEmailValid(emailString) -> {
-                Toast.makeText(context, "Incorrect Email validation", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            password.length() !in 8..30 -> {
-                Toast.makeText(
-                    context,
-                    "Password length should be from 8 to 30 symbols",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                false
-            }
-
-            firstName.length() !in 3..25 -> {
-                Toast.makeText(
-                    context,
-                    "First Name length should be from 3 to 25 symbols ",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                false
-            }
-
-            lastName.length() !in 3..25 -> {
-                Toast.makeText(
-                    context,
-                    "Last Name length should be from 3 to 25 symbols",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                false
-            }
-
-            else -> true
-        }
-
+    private fun goToNextFragment(fragment: Fragment, tag: String) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.newFragmentView, fragment, tag)
+            .addToBackStack(null)
+            .commit()
     }
-
 }

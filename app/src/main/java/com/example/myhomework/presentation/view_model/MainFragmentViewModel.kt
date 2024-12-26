@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myhomework.presentation.action.MainFragmentActions
 
-class MyViewModel : ViewModel() {
+class MainFragmentViewModel : ViewModel() {
 
     private val _liveData = MutableLiveData(CurrentState())
     val liveData: LiveData<CurrentState> get() = _liveData
