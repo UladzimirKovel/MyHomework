@@ -37,5 +37,6 @@
     <string name="edittext_name">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
     <string name="info_block">Info block</string>
+    <string name="button_network">Network</string>
 
 </resources>

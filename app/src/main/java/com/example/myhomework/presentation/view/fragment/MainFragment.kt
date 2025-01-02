@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.myhomework.R
 import com.example.myhomework.databinding.FragmentMainBinding
 import com.example.myhomework.presentation.action.MainFragmentActions
 import com.example.myhomework.presentation.view_model.MyViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 private var _binding: FragmentMainBinding? = null
 private val binding get() = _binding!!
@@ -43,7 +46,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupListener()
+        binding.network.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel?.apiResponce()
+            }
+        }
 
         viewModel?.liveData?.observe(viewLifecycleOwner) {
             when {
@@ -52,6 +59,8 @@ class MainFragment : Fragment() {
                 it.buttonLogin -> goToNextFragment(LoginFragment(), "Login")
             }
         }
+
+        setupListener()
     }
 
     private fun setupListener() {

@@ -32,4 +32,13 @@
         android:text="@string/acc_textview_main"
         style="@style/LogInButtonStyle" />
 
+    <Button
+        android:id="@+id/network"
+        android:text="@string/button_network"
+        android:layout_width="@dimen/button_width_320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/linear_edittext_width_260dp"
+        style="@style/MainButtonStyle" />
+
 </FrameLayout>
