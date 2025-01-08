@@ -2,8 +2,8 @@ package com.example.myhomework.presentation.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.myhomework.R
-import com.example.myhomework.presentation.view.fragment.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 //        initClick()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.newFragmentView, MainFragment(), "MainFragment")
+                .add(R.id.newFragmentView, NavHostFragment(), "MainFragment")
                 .commit()
         }
     }

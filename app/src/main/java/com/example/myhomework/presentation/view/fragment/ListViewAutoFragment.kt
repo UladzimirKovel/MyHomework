@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -86,7 +87,8 @@ class ListViewAutoFragment : Fragment() {
         }
 
         backMainActivity?.setOnClickListener {
-            backParent()
+            findNavController().navigate(R.id.action_listViewAutoFragment_to_mainFragment)
+//            backParent()
         }
     }
 

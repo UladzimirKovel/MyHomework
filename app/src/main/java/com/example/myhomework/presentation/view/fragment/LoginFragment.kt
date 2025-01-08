@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentLoginBinding
@@ -102,23 +103,26 @@ class LoginFragment : Fragment() {
             if (loginTextviewEmail != null && loginTextviewPassword != null) {
                     validateInput(loginTextviewEmail, loginTextviewPassword)
             }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "Login")
-                .commit()
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                .commit()
         }
 
         loginButtonMain?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Main")
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, MainFragment(), "Main")
+//                .addToBackStack(null)
+//                .commit()
         }
 
         accTextviewLogin?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                .addToBackStack(null)
+//                .commit()
         }
     }
 }

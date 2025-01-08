@@ -6,12 +6,12 @@
 
     <TextView
         android:id="@+id/fragment_button_auto"
+        style="@style/TitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/title_main_90dp"
-        android:text="@string/textview_title_main"
-        style="@style/TitleTextStyle" />
+        android:text="@string/textview_title_main" />
 
     <Button
         android:id="@+id/fragment_button_sign_up"
