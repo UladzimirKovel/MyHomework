@@ -17,5 +17,6 @@
     <dimen name="linear_layout_width_340dp">340dp</dimen>
     <dimen name="linear_layout_margin_100dp">100dp</dimen>
     <dimen name="linear_layout_padding_40sp">40sp</dimen>
+    <dimen name="layout_dimen_75dp">75dp</dimen>
 
 </resources>

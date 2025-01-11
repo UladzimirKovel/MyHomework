@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentSignUpBinding
@@ -59,22 +60,25 @@ class SignUpFragment : Fragment() {
                     signupTextViewEmail.toString(),
                     signupTextViewPassword.toString()
                 )
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                    .commit()
+                findNavController().navigate(R.id.signUpFragment)
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                    .commit()
             }
         }
 
         binding.buttonSignup.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Login")
-                .commit()
+            findNavController().navigate(R.id.mainFragment)
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, MainFragment(), "Main")
+//                .commit()
         }
 
         binding.mainTextviewToLogin.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                .commit()
+            findNavController().navigate(R.id.loginFragment)
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, LoginFragment(), "Login")
+//                .commit()
         }
 
     }

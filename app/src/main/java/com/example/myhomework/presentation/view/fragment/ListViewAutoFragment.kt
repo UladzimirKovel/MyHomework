@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -66,10 +67,11 @@ class ListViewAutoFragment : Fragment() {
     }
 
     private fun backParent() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.newFragmentView, MainFragment(), "Main")
-            .addToBackStack(null)
-            .commit()
+        findNavController().navigate(R.id.mainFragment)
+//        parentFragmentManager.beginTransaction()
+//            .replace(R.id.newFragmentView, MainFragment(), "Main")
+//            .addToBackStack(null)
+//            .commit()
     }
 
     private fun setupListener() {
