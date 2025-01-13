@@ -31,9 +31,13 @@ class SignUpFragment : Fragment() {
 
         _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
 
-        setupListener(binding.root)
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupListener(requireView())
     }
 
     private fun setupListener(view: View) {
