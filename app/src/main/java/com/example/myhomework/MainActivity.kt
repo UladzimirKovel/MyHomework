@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private var buttonMain: Button? = null
     private var mainTextViewToLogin: TextView? = null
 
+    @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initClick() {
 
-        val autoButton: TextView = findViewById(R.id.button_auto)
+        val autoButton: TextView = findViewById(R.id.button_list_auto)
         val buttonMain: Button = findViewById(R.id.button_main)
         val mainTextViewToLogin: TextView = findViewById(R.id.main_textview_to_login)
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
-        autoButton = findViewById(R.id.button_auto)
+        autoButton = findViewById(R.id.button_list_auto)
         buttonMain = findViewById(R.id.button_main)
         mainTextViewToLogin = findViewById(R.id.main_textview_to_login)
     }

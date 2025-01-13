@@ -76,12 +76,12 @@
 
     <Button
         android:id="@+id/button_signup"
-        android:text="@string/signup_button_main"
+        style="@style/MainButtonStyle"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="@dimen/test_size_title_main_name_80sp"
-        style="@style/MainButtonStyle" />
+        android:text="@string/signup_button_main" />
 
     <TextView
         android:id="@+id/main_textview_to_login"
