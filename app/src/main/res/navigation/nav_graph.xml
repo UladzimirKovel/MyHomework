@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.MainFragment"
+        android:label="MainFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.SignUpFragment"
+        android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/listViewAutoFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.ListViewAutoFragment"
+        android:label="fragment_list_auto"
+        tools:layout="@layout/fragment_list_auto" />
+</navigation>
