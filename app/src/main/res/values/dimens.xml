@@ -30,6 +30,7 @@
 
     <dimen name="margin_top_8dp">8dp</dimen>
     <dimen name="button_margin_start_150dp">150dp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
 
 
     <dimen name="margin_20dp">20dp</dimen>
