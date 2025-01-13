@@ -13,13 +13,16 @@ import com.example.myhomework.databinding.FragmentMainBinding
 import com.example.myhomework.presentation.view_model.MyViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.example.myhomework.presentation.action.MainFragmentActions
+import com.example.myhomework.presentation.view_model.MainFragmentViewModel
 
 private var _binding: FragmentMainBinding? = null
 private val binding get() = _binding!!
 
-private var viewModel: MyViewModel? = null
+private var viewModel: MainFragmentViewModel? = null
 
 class MainFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +38,7 @@ class MainFragment : Fragment() {
                     .application
             )
                 .create(
-                    MyViewModel::class.java
+                    MainFragmentViewModel::class.java
                 )
 
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)

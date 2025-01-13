@@ -67,43 +67,18 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-//    private var _binding: ActivityMainBinding? = null
-//    private val binding get() = _binding!!
-//
-//    private var viewModel: MyViewModel? = null
 
-//    override fun onPostCreate(savedInstanceState: Bundle?) {
-//        super.onPostCreate(savedInstanceState)
-//        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-//            .create(MyViewModel::class.java)
-//        _binding = ActivityMainBinding.inflate(this.layoutInflater)
-//        setContentView(binding.root)
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+
 
 //        setContentView(R.layout.activity_main)
 
-//        observeLiveData()
-//        initClick()
 //        if (savedInstanceState == null) {
 //            supportFragmentManager.beginTransaction()
 //                .add(R.id.newFragmentView, NavHostFragment(), "MainFragment")
 //                .addToBackStack(null)
 //                .commit()
 //        }
-//    }
-
-//    private fun initClick() {
-//        _binding?.buttonExample?.setOnClickListener {
-//            viewModel?.updateTextField()
-//        }
-//    }
-//
-//    private fun observeLiveData() {
-//        viewModel?.liveData?.observe(this) { newData ->
-//            _binding?.tvExample?.text = newData
-//        }
-//    }
-//
-//    override fun onDestroy() {
-//        _binding = null
-//        super.onDestroy()
 //    }
