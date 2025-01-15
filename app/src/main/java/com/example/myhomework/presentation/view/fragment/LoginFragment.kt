@@ -4,18 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
-//import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentLoginBinding
 import com.example.myhomework.presentation.view_model.LoginFragmentViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
-//import org.koin.android.ext.android.inject
 
 class LoginFragment : Fragment() {
 
@@ -45,8 +39,8 @@ class LoginFragment : Fragment() {
 
     private fun setupListener() {
 
-        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
-        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
+//        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
+//        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 
         binding.loginButton.setOnClickListener {
             if (loginViewModel.validateInput(
@@ -84,4 +78,9 @@ class LoginFragment : Fragment() {
 //            .addToBackStack(null)
 //            .commit()
 //    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }

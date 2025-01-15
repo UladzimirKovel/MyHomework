@@ -16,12 +16,12 @@ class UserSharedPref(context: Context) {
         editor.apply()
     }
 
-    fun getUser() : Map<String, String?> { // Придумать использование
-        return mapOf(
-            "firstName" to sharedPref.getString("firstName", null),
-            "lastName" to sharedPref.getString("lastName", null),
-            "email" to sharedPref.getString("email", null),
-            "password" to sharedPref.getString("password", null)
-        )
-    }
+//    fun getUser() : Map<String, String?> { // Придумать использование
+//        return mapOf(
+//            "firstName" to sharedPref.getString("firstName", null),
+//            "lastName" to sharedPref.getString("lastName", null),
+//            "email" to sharedPref.getString("email", null),
+//            "password" to sharedPref.getString("password", null)
+//        )
+//    }
 }
