@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,10 @@ import com.example.myhomework.R
 import com.example.myhomework.domain.repository.Auto
 import com.example.myhomework.domain.repository.ListAutoRepository
 import com.example.myhomework.presentation.adapter.AutoAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -80,10 +85,16 @@ class ListViewAutoFragment : Fragment() {
         val addButton: Button? = view?.findViewById(R.id.add_notes_button)
         val brandTextView: EditText? = view?.findViewById(R.id.title_notes_tv)
         val messageTextView: EditText? = view?.findViewById(R.id.message_notes_tv)
+        val pbAdd: ProgressBar? = view?.findViewById(R.id.pbAdd)
 
         addButton?.setOnClickListener {
             if (brandTextView != null && messageTextView != null) {
                 handleAddNote(brandTextView, messageTextView)
+            }
+
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(3000)
+                pbAdd?.isIndeterminate = true
             }
         }
 
