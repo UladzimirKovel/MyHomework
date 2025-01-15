@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navController = findNavController(R.id.fragmentContainerView)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment, R.id.listViewAutoFragment, R.id.loginFragment, R.id.signUpFragment))
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment, R.id.listViewAutoFragment, R.id.loginFragment, R.id.mainFragment))
         setupActionBarWithNavController(navController,drawerLayout)
         navigationView.setupWithNavController(navController)
 

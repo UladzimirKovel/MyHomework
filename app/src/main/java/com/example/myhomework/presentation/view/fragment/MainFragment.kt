@@ -10,11 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.databinding.FragmentMainBinding
-import com.example.myhomework.presentation.view_model.MyViewModel
+import com.example.myhomework.presentation.view_model.MainFragmentViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.example.myhomework.presentation.action.MainFragmentActions
-import com.example.myhomework.presentation.view_model.MainFragmentViewModel
 
 private var _binding: FragmentMainBinding? = null
 private val binding get() = _binding!!
@@ -78,7 +76,7 @@ class MainFragment : Fragment() {
         }
         binding.fragmentButtonSignUp.setOnClickListener {
 //            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
-            findNavController().navigate(R.id.signUpFragment)
+            findNavController().navigate(R.id.mainFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                .addToBackStack(null)

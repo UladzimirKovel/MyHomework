@@ -69,7 +69,7 @@ class SignUpFragment : Fragment() {
 //                parentFragmentManager.beginTransaction()
 //                    .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                    .commit()
-//                goToNextFragment(LoginFragment(), "Login")
+//                goToNextFragment(SignUpFragment(), "SignUp")
             }
         }
 
