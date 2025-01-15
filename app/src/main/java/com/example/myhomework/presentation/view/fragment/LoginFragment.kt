@@ -10,16 +10,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhomework.R
-import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentLoginBinding
 import com.example.myhomework.domain.use_case.isEmailValid
-import org.koin.android.ext.android.inject
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val sharedPref : UserSharedPref by inject()
+//    private val sharedPref: UserSharedPref by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,26 +70,11 @@ class LoginFragment : Fragment() {
                 false
             }
 
-            !isEmailExist(emailString, validationResPasswordSignup) -> {
-                Toast.makeText(context, "Incorrect Email", Toast.LENGTH_LONG).show()
-                false
-            }
             else -> true
         }
     }
 
-    private fun isEmailExist(email: String, password : String): Boolean {
-        val userData = sharedPref.getUser()
-        val savedEmail = userData["email"]
-        val savedPassword = userData["password"]
-        return if (savedEmail == email) {
-            true
-        } else if(savedPassword == password){
-            true
-        } else false
-    }
-
-    private fun setupListener(){
+    private fun setupListener() {
         val loginButtonMain: Button? = view?.findViewById(R.id.button_main)
         val accTextviewLogin: TextView? = view?.findViewById(R.id.main_textview_to_login)
         val buttonReg: Button? = view?.findViewById(R.id.login_button)
@@ -100,7 +83,7 @@ class LoginFragment : Fragment() {
 
         buttonReg?.setOnClickListener {
             if (loginTextviewEmail != null && loginTextviewPassword != null) {
-                    validateInput(loginTextviewEmail, loginTextviewPassword)
+                validateInput(loginTextviewEmail, loginTextviewPassword)
             }
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, SignUpFragment(), "Login")
