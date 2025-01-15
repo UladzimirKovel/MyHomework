@@ -17,20 +17,20 @@ import com.example.myhomework.R
 import com.example.myhomework.domain.repository.Auto
 import com.example.myhomework.domain.repository.ListAutoRepository
 import com.example.myhomework.presentation.adapter.AutoAdapter
+import com.example.myhomework.presentation.view_model.ListViewAutoModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListViewAutoFragment : Fragment() {
 
     private var notesRecyclerView: RecyclerView? = null
     private var autoAdapter: AutoAdapter? = null
     private val repository : ListAutoRepository by inject()
+    private val listAutoModel: ListViewAutoModel by viewModel()
 
     @SuppressLint("NotifyDataSetChanged", "CommitTransaction", "MissingInflatedId")
     override fun onCreateView(
@@ -46,30 +46,12 @@ class ListViewAutoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         setupListener()
         noteRecycler()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun handleAddNote(brandTextView: EditText, messageTextView: EditText) {
-        val title = brandTextView.text.toString()
-        val text = messageTextView.text.toString()
-        val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
 
-        if (title.isNotEmpty() && title.isNotBlank()) {
-
-            val newAuto = Auto.User(title, text)
-            repository.addNote(newAuto) //Добавляем заметку в репозиторий
-            autoAdapter?.notifyDataSetChanged() //Уведомляем адаптер о том, что данные изменились
-            brandTextView.text.clear() // Очищаем поле ввода заголовка
-            messageTextView.text.clear() //Очищаем поле ввода текста
-
-            val newAutoDate = Auto.Card(date)
-            repository.addNote(newAutoDate)
-            autoAdapter?.notifyDataSetChanged()
-            SimpleDateFormat.DATE_FIELD.toString()
-        }
-    }
 
     private fun backParent() {
         findNavController().navigate(R.id.mainFragment)
@@ -89,7 +71,7 @@ class ListViewAutoFragment : Fragment() {
 
         addButton?.setOnClickListener {
             if (brandTextView != null && messageTextView != null) {
-                handleAddNote(brandTextView, messageTextView)
+                listAutoModel.handleAddNote(brandTextView, messageTextView)
             }
 
             CoroutineScope(Dispatchers.Main).launch {
