@@ -20,16 +20,16 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".ThirdOnboardingActivity"
+            android:name=".presentation.view.activity.ThirdOnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".SecondOnboardingActivity"
+            android:name=".presentation.view.activity.SecondOnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".FirstOnboardingActivity"
+            android:name=".presentation.view.activity.FirstOnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".presentation.view.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

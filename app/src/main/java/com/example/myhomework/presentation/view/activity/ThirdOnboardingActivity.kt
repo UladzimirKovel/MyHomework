@@ -1,4 +1,4 @@
-package com.example.myhomework
+package com.example.myhomework.presentation.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,16 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myhomework.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SecondOnboardingActivity : AppCompatActivity() {
+class ThirdOnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_second_onboarding)
+        setContentView(R.layout.activity_third_onboarding)
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(5001)
@@ -27,8 +28,8 @@ class SecondOnboardingActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(
                 Intent(
-                    this@SecondOnboardingActivity,
-                    ThirdOnboardingActivity::class.java
+                    this@ThirdOnboardingActivity,
+                    MainActivity::class.java
                 )
             )
             finish()

@@ -1,25 +1,26 @@
-package com.example.myhomework
+package com.example.myhomework.presentation.view.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myhomework.presentation.view.activity.MainActivity
+import com.example.myhomework.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ThirdOnboardingActivity : AppCompatActivity() {
+@SuppressLint("CustomSplashScreen")
+class SplashActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_third_onboarding)
+        setContentView(R.layout.activity_splash)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(5001)
+            delay(2900)
             goNext()
         }
     }
@@ -28,8 +29,8 @@ class ThirdOnboardingActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(
                 Intent(
-                    this@ThirdOnboardingActivity,
-                    MainActivity::class.java
+                    this@SplashActivity,
+                    FirstOnboardingActivity::class.java
                 )
             )
             finish()
