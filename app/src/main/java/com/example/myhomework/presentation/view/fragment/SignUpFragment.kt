@@ -14,8 +14,8 @@ import com.example.myhomework.domain.use_case.isEmailValid
 import org.koin.android.ext.android.inject
 
 class SignUpFragment : Fragment() {
-//    private var sharedPref : UserSharedPref? = null
-    private val sharedPref : UserSharedPref by inject()
+    //    private var sharedPref : UserSharedPref? = null
+    private val sharedPref: UserSharedPref by inject()
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
@@ -30,53 +30,47 @@ class SignUpFragment : Fragment() {
 
         _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
 
-        setupListener(binding.root)
+        setupListener()
 
         return binding.root
     }
 
-    private fun setupListener(view: View) {
+    private fun setupListener() {
 
 //        val signupButtonMain: Button = view.findViewById(R.id.button_signup)
 //        val accTextViewSignup: TextView = view.findViewById(R.id.main_textview_to_login)
 //        val buttonReg: Button = view.findViewById(R.id.login_button)
-        val signupTextViewFirstname: EditText = view.findViewById(R.id.signup_textview_firstname)
-        val signupTextViewLastname: EditText = view.findViewById(R.id.signup_textview_lastname)
-        val signupTextViewEmail: EditText = view.findViewById(R.id.email)
-        val signupTextViewPassword: EditText = view.findViewById(R.id.password)
+//        val signupTextViewFirstname: EditText = view.findViewById(R.id.signup_textview_firstname)
+//        val signupTextViewLastname: EditText = view.findViewById(R.id.signup_textview_lastname)
+//        val signupTextViewEmail: EditText = view.findViewById(R.id.email)
+//        val signupTextViewPassword: EditText = view.findViewById(R.id.password)
 
-        binding.loginButton.setOnClickListener {
-            if (validateInput(
-                    signupTextViewFirstname,
-                    signupTextViewLastname,
-                    signupTextViewEmail,
-                    signupTextViewPassword
-                )
-            ) {
-                sharedPref.saveUser(
-                    signupTextViewFirstname.toString(),
-                    signupTextViewLastname.toString(),
-                    signupTextViewEmail.toString(),
-                    signupTextViewPassword.toString()
-                )
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                    .commit()
+        binding.apply {
+            loginButton.setOnClickListener {
+                if (validateInput(
+                        signupTextviewFirstname,
+                        signupTextviewLastname,
+                        email,
+                        password
+                    )
+                ) {
+                    sharedPref.saveUser(
+                        signupTextviewFirstname.toString(),
+                        signupTextviewLastname.toString(),
+                        email.toString(),
+                        password.toString()
+                    )
+                    goToNextFragment(LoginFragment(), "Login")
+                }
+            }
+
+            buttonSignup.setOnClickListener {
+                goToNextFragment(MainFragment(), "Main")
+            }
+            mainTextviewToLogin.setOnClickListener {
+                goToNextFragment(LoginFragment(), "Login")
             }
         }
-
-        binding.buttonSignup.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Login")
-                .commit()
-        }
-
-        binding.mainTextviewToLogin.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, LoginFragment(), "Login")
-                .commit()
-        }
-
     }
 
     private fun validateInput(
@@ -91,39 +85,11 @@ class SignUpFragment : Fragment() {
         val emailString = email.text.toString().trim()
         val isValidPassword = password.text.toString().trim()
 
-        return when {
-            emailString.isEmpty()  -> {
-                Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
 
-            isValidPassword.isEmpty() -> {
-                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
+        return when {
 
             isNameValid.isEmpty() -> {
                 Toast.makeText(context, "First Name string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            isLastNameValid.isEmpty() -> {
-                Toast.makeText(context, "Last Nave string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            !isEmailValid(emailString) -> {
-                Toast.makeText(context, "Incorrect Email validation", Toast.LENGTH_LONG).show()
-                false
-            }
-
-            password.length() !in 8..30 -> {
-                Toast.makeText(
-                    context,
-                    "Password length should be from 8 to 30 symbols",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
                 false
             }
 
@@ -137,6 +103,11 @@ class SignUpFragment : Fragment() {
                 false
             }
 
+            isLastNameValid.isEmpty() -> {
+                Toast.makeText(context, "Last Nave string is empty", Toast.LENGTH_LONG).show()
+                false
+            }
+
             lastName.length() !in 3..25 -> {
                 Toast.makeText(
                     context,
@@ -147,9 +118,44 @@ class SignUpFragment : Fragment() {
                 false
             }
 
+            emailString.isEmpty() -> {
+                Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
+                false
+            }
+
+            !isEmailValid(emailString) -> {
+                Toast.makeText(context, "Incorrect Email validation", Toast.LENGTH_LONG).show()
+                false
+            }
+
+            isValidPassword.isEmpty() -> {
+                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
+                false
+            }
+
+            password.length() !in 8..30 -> {
+                Toast.makeText(
+                    context,
+                    "Password length should be from 8 to 30 symbols",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                false
+            }
+
             else -> true
         }
-
     }
 
+    private fun goToNextFragment(fragment: Fragment, tag: String) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.newFragmentView, fragment, tag)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }

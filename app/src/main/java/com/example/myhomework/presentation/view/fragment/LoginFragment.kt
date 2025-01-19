@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhomework.R
@@ -27,7 +25,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 //        val currentView = inflater.inflate(R.layout.fragment_login, container, false)
-//        return currentView
+//        _binding = FragmentLoginBinding.bind(currentView)
+//        return binding.root    Можно и так подключиться
 
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
@@ -53,13 +52,12 @@ class LoginFragment : Fragment() {
                 false
             }
 
-            validationResPasswordSignup.isEmpty() -> {
-                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
-                false
-            }
-
             !isEmailValid(emailString) -> {
                 Toast.makeText(context, "Incorrect Email validation", Toast.LENGTH_LONG).show()
+                false
+            }
+            validationResPasswordSignup.isEmpty() -> {
+                Toast.makeText(context, "Password string is empty", Toast.LENGTH_LONG).show()
                 false
             }
 
@@ -92,33 +90,33 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupListener(){
-        val loginButtonMain: Button? = view?.findViewById(R.id.button_main)
-        val accTextviewLogin: TextView? = view?.findViewById(R.id.main_textview_to_login)
-        val buttonReg: Button? = view?.findViewById(R.id.login_button)
-        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
-        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 
-        buttonReg?.setOnClickListener {
-            if (loginTextviewEmail != null && loginTextviewPassword != null) {
-                    validateInput(loginTextviewEmail, loginTextviewPassword)
+        binding.loginButton.setOnClickListener {
+            if (binding.loginTextviewEmail != null && binding.loginTextviewPassword != null) {
+                validateInput(binding.loginTextviewEmail, binding.loginTextviewPassword)
             }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "Login")
-                .commit()
+            goToNextFragment(LoginFragment(), "Login")
         }
 
-        loginButtonMain?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, MainFragment(), "Main")
-                .addToBackStack(null)
-                .commit()
+        binding.buttonMain.setOnClickListener {
+            goToNextFragment(MainFragment(), "Main")
         }
 
-        accTextviewLogin?.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack(null)
-                .commit()
+        binding.mainTextviewToLogin.setOnClickListener {
+            goToNextFragment(SignUpFragment(), "SignUp")
         }
+
+    }
+
+    private fun goToNextFragment(fragment: Fragment, tag: String) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.newFragmentView, fragment, tag)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
