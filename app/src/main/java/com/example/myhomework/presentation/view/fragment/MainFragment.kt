@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
         }
         binding.fragmentButtonSignUp.setOnClickListener {
 //            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
-            findNavController().navigate(R.id.signUpFragment)
+            findNavController().navigate(R.id.mainFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                .addToBackStack(null)
