@@ -8,7 +8,7 @@ import com.example.myhomework.data.api.ApiExample
 import com.example.myhomework.data.repository.RetrofitImpl
 import com.example.myhomework.presentation.action.MainFragmentActions
 
-class MyViewModel : ViewModel() {
+class MainFragmentViewModel : ViewModel() {
 
     private val _liveData = MutableLiveData(CurrentState())
     val liveData: LiveData<CurrentState> get() = _liveData

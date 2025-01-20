@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.databinding.FragmentMainBinding
-import com.example.myhomework.presentation.action.MainFragmentActions
-import com.example.myhomework.presentation.view_model.MyViewModel
+import com.example.myhomework.presentation.view_model.MainFragmentViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 private var _binding: FragmentMainBinding? = null
 private val binding get() = _binding!!
 
-private var viewModel: MyViewModel? = null
+private var viewModel: MainFragmentViewModel? = null
 
 class MainFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +36,7 @@ class MainFragment : Fragment() {
                     .application
             )
                 .create(
-                    MyViewModel::class.java
+                    MainFragmentViewModel::class.java
                 )
 
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
@@ -52,13 +53,13 @@ class MainFragment : Fragment() {
             }
         }
 
-        viewModel?.liveData?.observe(viewLifecycleOwner) {
-            when {
-                it.buttonAuto -> goToNextFragment(ListViewAutoFragment(), "ListAuto")
-                it.buttonSignUp -> goToNextFragment(SignUpFragment(), "SignUp")
-                it.buttonLogin -> goToNextFragment(LoginFragment(), "Login")
-            }
-        }
+//        viewModel?.liveData?.observe(viewLifecycleOwner) {
+//            when {
+//                it.buttonAuto -> goToNextFragment(ListViewAutoFragment(), "ListAuto")
+//                it.buttonSignUp -> goToNextFragment(SignUpFragment(), "SignUp")
+//                it.buttonLogin -> goToNextFragment(LoginFragment(), "Login")
+//            }
+//        }
 
         setupListener()
     }
@@ -66,16 +67,16 @@ class MainFragment : Fragment() {
     private fun setupListener() {
 
         binding.fragmentButtonAuto.setOnClickListener {
-            viewModel?.handleAction(MainFragmentActions.GoToListAutoFragment)
-
+//            viewModel?.handleAction(MainFragmentActions.GoToListAutoFragment)
+            findNavController().navigate(R.id.listViewAutoFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, ListViewAutoFragment(), "AutoList")
 //                .addToBackStack(null)
 //                .commit()
         }
         binding.fragmentButtonSignUp.setOnClickListener {
-            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
-
+//            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
+            findNavController().navigate(R.id.mainFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                .addToBackStack(null)
@@ -83,8 +84,8 @@ class MainFragment : Fragment() {
         }
 
         binding.fragmentMainTextviewToLogin.setOnClickListener {
-            viewModel?.handleAction(MainFragmentActions.GoToLoginFragment)
-
+//            viewModel?.handleAction(MainFragmentActions.GoToLoginFragment)
+            findNavController().navigate(R.id.loginFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, LoginFragment(), "Login")
 //                .addToBackStack(null)
@@ -92,12 +93,12 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun goToNextFragment(fragment: Fragment, tag: String) {
-        parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, fragment, tag)
-                .addToBackStack(null)
-                .commit()
-    }
+//    private fun goToNextFragment(fragment: Fragment, tag: String) {
+//        parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, fragment, tag)
+//                .addToBackStack(null)
+//                .commit()
+//    }
 
     override fun onDestroy() {
         _binding = null

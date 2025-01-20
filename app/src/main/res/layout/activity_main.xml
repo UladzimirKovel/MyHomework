@@ -7,11 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/newFragmentView"
-        android:name="com.example.myhomework.presentation.view.fragment.MainFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/newFragmentView"-->
+<!--        android:name= "androidx.navigation.fragment.NavHostFragment"-->
+<!--        app:navGraph= "@navigation/nav_graph"-->
+<!--        app:defaultNavHost= "true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
 <!--    <TextView-->
 <!--        android:id="@+id/tv_example"-->

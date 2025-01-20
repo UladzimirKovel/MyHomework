@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.MainFragment"
+        android:label="Главное меню">
+        <action
+            android:id="@+id/listViewAutoFragment"
+            app:destination="@id/listViewAutoFragment" />
+        <action
+            android:id="@+id/mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listViewAutoFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.ListViewAutoFragment"
+        android:label="fragment_list_auto"
+        tools:layout="@layout/fragment_list_auto" >
+        <action
+            android:id="@+id/mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.myhomework.presentation.view.fragment.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
