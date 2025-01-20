@@ -1,6 +1,7 @@
 package com.example.myhomework
 
 import android.app.Application
+import com.example.myhomework.di.listAutoModelModule
 import com.example.myhomework.di.listAutoModule
 import com.example.myhomework.di.loginModelModule
 import com.example.myhomework.di.sharedPrefModule
@@ -22,7 +23,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(sharedPrefModule, listAutoModule, loginModelModule, signUpModelModule)
+            modules(sharedPrefModule, listAutoModule, loginModelModule, signUpModelModule, listAutoModelModule)
         }
     }
 }

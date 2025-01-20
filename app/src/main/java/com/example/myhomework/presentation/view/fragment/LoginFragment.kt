@@ -13,8 +13,6 @@ import com.example.myhomework.databinding.FragmentLoginBinding
 import com.example.myhomework.presentation.view_model.LoginFragmentViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-//import org.koin.android.ext.android.inject
-
 class LoginFragment : Fragment() {
 
     //    private val sharedPref: UserSharedPref by inject()
@@ -43,8 +41,8 @@ class LoginFragment : Fragment() {
 
     private fun setupListener() {
 
-        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
-        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
+//        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
+//        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 
         binding.loginButton.setOnClickListener {
             if (loginViewModel.validateInput(
@@ -82,4 +80,9 @@ class LoginFragment : Fragment() {
 //            .addToBackStack(null)
 //            .commit()
 //    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }
