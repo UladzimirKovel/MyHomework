@@ -86,7 +86,8 @@ class LoginFragment : Fragment() {
                 validateInput(loginTextviewEmail, loginTextviewPassword)
             }
             parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "Login")
+                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+                .addToBackStack(null)
                 .commit()
         }
 
