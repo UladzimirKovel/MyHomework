@@ -40,7 +40,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupListener() {
-
+      
+        buttonReg?.setOnClickListener {
+            if (loginTextviewEmail != null && loginTextviewPassword != null) {
+                validateInput(loginTextviewEmail, loginTextviewPassword)
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+                .addToBackStack("null")
+                .commit()
+                
 //        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
 //        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 
