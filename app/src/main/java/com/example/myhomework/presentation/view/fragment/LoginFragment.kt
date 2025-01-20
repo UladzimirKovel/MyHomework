@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
@@ -40,16 +41,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupListener() {
-      
-        buttonReg?.setOnClickListener {
-            if (loginTextviewEmail != null && loginTextviewPassword != null) {
-                validateInput(loginTextviewEmail, loginTextviewPassword)
-            }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack("null")
-                .commit()
-                
+
+//        buttonReg?.setOnClickListener {
+//            if (loginTextviewEmail != null && loginTextviewPassword != null) {
+//                validateInput(loginTextviewEmail, loginTextviewPassword)
+//            }
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                .addToBackStack("null")
+//                .commit()
+
 //        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
 //        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
 

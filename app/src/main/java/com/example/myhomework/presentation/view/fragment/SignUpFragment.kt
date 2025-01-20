@@ -37,40 +37,42 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupListener(requireView())
+        setupListener()
     }
 
-    private fun setupListener(view: View) {
+    private fun setupListener() {
 
 //        val signupButtonMain: Button = view.findViewById(R.id.button_signup)
 //        val accTextViewSignup: TextView = view.findViewById(R.id.main_textview_to_login)
 //        val buttonReg: Button = view.findViewById(R.id.login_button)
-        val signupTextViewFirstname: EditText = view.findViewById(R.id.signup_textview_firstname)
-        val signupTextViewLastname: EditText = view.findViewById(R.id.signup_textview_lastname)
-        val signupTextViewEmail: EditText = view.findViewById(R.id.email)
-        val signupTextViewPassword: EditText = view.findViewById(R.id.password)
+//        val signupTextViewFirstname: EditText = view.findViewById(R.id.signup_textview_firstname)
+//        val signupTextViewLastname: EditText = view.findViewById(R.id.signup_textview_lastname)
+//        val signupTextViewEmail: EditText = view.findViewById(R.id.email)
+//        val signupTextViewPassword: EditText = view.findViewById(R.id.password)
 
-        binding.loginButton.setOnClickListener {
-            if (signUpModel.validateInput(
-                    signupTextViewFirstname,
-                    signupTextViewLastname,
-                    signupTextViewEmail,
-                    signupTextViewPassword,
-                    requireContext()
-                )
-            ) {
-                sharedPref.saveUser(
-                    signupTextViewFirstname.toString(),
-                    signupTextViewLastname.toString(),
-                    signupTextViewEmail.toString(),
-                    signupTextViewPassword.toString()
-                )
-                findNavController().navigate(R.id.signUpFragment)
+        binding.apply {
+            loginButton.setOnClickListener {
+                if (signUpModel.validateInput(
+                        signupTextviewFirstname,
+                        signupTextviewLastname,
+                        email,
+                        password,
+                        requireContext()
+                    )
+                ) {
+                    sharedPref.saveUser(
+                        signupTextviewFirstname.toString(),
+                        signupTextviewLastname.toString(),
+                        email.toString(),
+                        password.toString()
+                    )
+                    findNavController().navigate(R.id.signUpFragment)
 //                parentFragmentManager.beginTransaction()
 //                    .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                    .commit()
 //                goToNextFragment(SignUpFragment(), "SignUp")
-            }
+                }
+        }
         }
 
         binding.buttonSignup.setOnClickListener {
