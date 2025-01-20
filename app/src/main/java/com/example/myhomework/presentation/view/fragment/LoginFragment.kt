@@ -87,7 +87,7 @@ class LoginFragment : Fragment() {
             }
             parentFragmentManager.beginTransaction()
                 .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-                .addToBackStack(null)
+                .addToBackStack("SignUp")
                 .commit()
         }
 
