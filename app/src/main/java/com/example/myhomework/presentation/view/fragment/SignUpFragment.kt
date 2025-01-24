@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
@@ -17,8 +16,8 @@ class SignUpFragment : Fragment() {
     //    private var sharedPref : UserSharedPref? = null
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-    private val signUpModel : SignUpFragmentViewModel by inject()
-    private val sharedPref : UserSharedPref by inject()
+    private val signUpModel: SignUpFragmentViewModel by inject()
+    private val sharedPref: UserSharedPref by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,7 +71,7 @@ class SignUpFragment : Fragment() {
 //                    .commit()
 //                goToNextFragment(SignUpFragment(), "SignUp")
                 }
-        }
+            }
         }
 
         binding.buttonSignup.setOnClickListener {
