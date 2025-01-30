@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.myhomework.domain.use_case.isEmailValid
 
-class SignUpFragmentViewModel : ViewModel() {
+class SignUpFragmentViewModel(private val context: Context) : ViewModel() {
 
     fun validateInput(
         firstName: EditText,
@@ -22,7 +22,7 @@ class SignUpFragmentViewModel : ViewModel() {
         val isValidPassword = password.text.toString().trim()
 
         return when {
-            emailString.isEmpty()  -> {
+            emailString.isEmpty() -> {
                 Toast.makeText(context, "Email string is empty", Toast.LENGTH_LONG).show()
                 false
             }

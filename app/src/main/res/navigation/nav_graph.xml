@@ -17,6 +17,9 @@
         <action
             android:id="@+id/loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/listAutoFragment"
+            app:destination="@id/listViewAutoFragment" />
     </fragment>
     <fragment
         android:id="@+id/listViewAutoFragment"

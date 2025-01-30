@@ -5,19 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.databinding.FragmentLoginBinding
 import com.example.myhomework.presentation.view_model.LoginFragmentViewModel
+import com.example.myhomework.presentation.view_model.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
-    //    private val sharedPref: UserSharedPref by inject()
+//    private val sharedPref: UserSharedPref by inject()
     private val loginViewModel: LoginFragmentViewModel by viewModel()
+
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private val userModel: UserViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +45,19 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userModel.registrUser.observe(viewLifecycleOwner, Observer { user ->
+            user?.let {
+                if (user) {
+                    findNavController().navigate(R.id.listViewAutoFragment)
+                    userModel.resetRegistrState()
+                } else Toast.makeText(
+                    requireContext(),
+                    "Incorrect email or password",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
         setupListener()
     }
 
@@ -51,21 +74,32 @@ class LoginFragment : Fragment() {
 
 //        val loginTextviewEmail: EditText? = view?.findViewById(R.id.login_textview_email)
 //        val loginTextviewPassword: EditText? = view?.findViewById(R.id.login_textview_password)
+        _binding?.apply {
+            loginCheck.setOnClickListener {
 
-        binding.loginButton.setOnClickListener {
-            if (loginViewModel.validateInput(
-                    binding.loginTextviewEmail,
-                    binding.loginTextviewPassword,
-                    requireContext()
-                )
-            )
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
-//                .commit()
-            findNavController().navigate(R.id.signUpFragment)
+                if (loginViewModel.validateInput(
+                        loginTvEmail,
+                        loginTvPassword,
+                        requireContext()
+                    )
+                ) {
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        userModel.loginUser(
+                            loginTvEmail.text.toString(),
+                            loginTvPassword.text.toString()
+                        )
+                    }
+
+                }
+
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
+//                    .commit()
+            }
         }
 
-        binding.buttonMain.setOnClickListener {
+        binding.mainMenuTextview.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, MainFragment(), "Main")
@@ -73,7 +107,7 @@ class LoginFragment : Fragment() {
 //                .commit()
         }
 
-        binding.mainTextviewToLogin.setOnClickListener {
+        binding.signUpTextview.setOnClickListener {
             findNavController().navigate(R.id.signUpFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")

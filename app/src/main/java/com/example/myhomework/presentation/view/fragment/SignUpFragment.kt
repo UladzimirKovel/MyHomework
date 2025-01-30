@@ -4,21 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myhomework.R
 import com.example.myhomework.data.repository.UserSharedPref
 import com.example.myhomework.databinding.FragmentSignUpBinding
 import com.example.myhomework.presentation.view_model.SignUpFragmentViewModel
+import com.example.myhomework.presentation.view_model.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class SignUpFragment : Fragment() {
-    //    private var sharedPref : UserSharedPref? = null
+
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+
     private val signUpModel: SignUpFragmentViewModel by inject()
     private val sharedPref: UserSharedPref by inject()
+    private val userModel: UserViewModel by inject()
 
+    //    private var sharedPref : UserSharedPref? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +44,21 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        /** Подписываемся на обновление и проверяем,сущ ли пользователь с таким email */
+        userModel.registrUser.observe(viewLifecycleOwner, Observer { success ->
+            success?.let {
+                if (it) {
+                    findNavController().navigate(R.id.loginFragment)
+                    /** Дает возможность вернуться на предыдущий экран */
+                    userModel.resetRegistrState()
+                } else Toast.makeText(
+                    requireContext(),
+                    "User with this email exists",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
 
         setupListener()
     }
@@ -50,22 +74,36 @@ class SignUpFragment : Fragment() {
 //        val signupTextViewPassword: EditText = view.findViewById(R.id.password)
 
         binding.apply {
-            loginButton.setOnClickListener {
+            loginSave.setOnClickListener {
+
                 if (signUpModel.validateInput(
-                        signupTextviewFirstname,
-                        signupTextviewLastname,
-                        email,
-                        password,
-                        requireContext()
+                        tvFirstname, tvLastname, tvEmail, tvPassword, requireContext()
                     )
                 ) {
-                    sharedPref.saveUser(
-                        signupTextviewFirstname.toString(),
-                        signupTextviewLastname.toString(),
-                        email.toString(),
-                        password.toString()
+                    signUpModel.validateInput(
+                        tvFirstname,
+                        tvLastname,
+                        tvEmail,
+                        tvPassword,
+                        requireContext()
                     )
-                    findNavController().navigate(R.id.signUpFragment)
+
+                    sharedPref.saveUser(
+                        tvFirstname.text.toString(),
+                        tvLastname.text.toString(),
+                        tvEmail.text.toString(),
+                        tvPassword.text.toString(),
+                    )
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        userModel.registrationUser(
+                            tvFirstname.text.toString(),
+                            tvLastname.text.toString(),
+                            tvEmail.text.toString(),
+                            tvPassword.text.toString()
+                        )
+                    }
+//                    findNavController().navigate(R.id.loginFragment)
 //                parentFragmentManager.beginTransaction()
 //                    .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                    .commit()
@@ -74,22 +112,13 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        binding.buttonSignup.setOnClickListener {
+        binding.buttonBackMain.setOnClickListener {
             findNavController().navigate(R.id.mainFragment)
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, MainFragment(), "Main")
 //                .commit()
 //            goToNextFragment(MainFragment(), "Main")
         }
-
-        binding.mainTextviewToLogin.setOnClickListener {
-            findNavController().navigate(R.id.loginFragment)
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.newFragmentView, LoginFragment(), "Login")
-//                .commit()
-//            goToNextFragment(LoginFragment(), "Login")
-        }
-
     }
 
 //    private fun goToNextFragment(fragment: Fragment, tag: String) {

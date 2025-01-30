@@ -15,12 +15,12 @@
 
     <Button
         android:id="@+id/fragment_button_sign_up"
-        android:text="@string/button_main"
+        style="@style/MainButtonStyle"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="@dimen/main_active_button_margin_180dp"
-        style="@style/MainButtonStyle" />
+        android:text="@string/button_main" />
 
     <TextView
         android:id="@+id/fragment_main_textview_to_login"

@@ -3,7 +3,7 @@
 
     <string name="textview_title_main">Spiice</string>
     <string name="acc_textview_main">You have an account?</string>
-    <string name="button_main">Discover the platform</string>
+    <string name="button_main">Registration user</string>
 
     <string name="signup_textview_title">Sign-up</string>
     <string name="signup_textview_firstname">First name</string>
@@ -17,18 +17,21 @@
     <string name="login_textview_email">Email</string>
     <string name="login_textview_password">Password</string>
     <string name="login_button_main">Log-in</string>
+    <string name="signUp_button_main">Sign Up</string>
     <string name="acc_textview_login">Return to Sign-up</string>
+    <string name="acc_textview_data_storage">Return to Main menu</string>
 
     <string name="error_empty_text">Text field is empty</string>
     <string name="error_length_text">Length should be min 3 max 255</string>
     <string name="error_symbols_text">Error symbols</string>
 
-    <string name="Next">Next</string>
+    <string name="Save">Save</string>
     <string name="back_main_activity">Back</string>
     <string name="title_notes">Add notes</string>
+    <string name="title_notes_db">Add notes in data base</string>
     <string name="add_notes">Add</string>
-    <string name="title_et">Brand auto</string>
-    <string name="message_et">Status</string>
+    <string name="title_et">Title</string>
+    <string name="content_et">Content</string>
     <string name="delete_notes_button">Delete</string>
     <string name="share">Share</string>
 
@@ -38,8 +41,9 @@
     <string name="edittext_default">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-.!@#$%^:{}|*()?1234567890</string>
     <string name="info_block">Info block</string>
     <string name="button_network">Network</string>
-    <string name="menu_login">Login\n</string>
-    <string name="menu_sign_up">SignUp</string>
+    <string name="menu_login">Login</string>
+    <string name="Log_in">Log in</string>
+    <string name="menu_sign_up">Sign Up</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_auto">Auto</string>
@@ -52,5 +56,6 @@
     <string name="second_onboarding" tools:ignore="StringEscaping">Don"t judge it too harshly</string>
     <string name="third_onboarding">Be the first to review</string>
     <string name="next_screen">next</string>
+    <string name="go_to_nest_screen">Next</string>
 
 </resources>

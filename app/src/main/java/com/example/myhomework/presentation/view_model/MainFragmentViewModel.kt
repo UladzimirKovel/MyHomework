@@ -13,7 +13,7 @@ class MainFragmentViewModel : ViewModel() {
     private val _liveData = MutableLiveData(CurrentState())
     val liveData: LiveData<CurrentState> get() = _liveData
 
-    private val rt : RetrofitImpl = RetrofitImpl()
+    private val rt: RetrofitImpl = RetrofitImpl()
     val api = rt.retrofit.create(ApiExample::class.java)
 
     fun handleAction(action: MainFragmentActions) {
@@ -22,17 +22,25 @@ class MainFragmentViewModel : ViewModel() {
                 CurrentState(buttonAuto = true)
 
             MainFragmentActions.GoToLoginFragment -> _liveData.value =
-                CurrentState(buttonAuto = false, buttonSignUp = false, buttonLogin = true)
+                CurrentState(
+                    buttonAuto = false,
+                    buttonSignUp = false,
+                    buttonLogin = true,
+                )
 
             MainFragmentActions.GoToSignUpFragment -> _liveData.value =
-                CurrentState(buttonAuto = false, buttonSignUp = true, buttonLogin = false)
+                CurrentState(
+                    buttonAuto = false,
+                    buttonSignUp = true,
+                    buttonLogin = false,
+                )
         }
     }
 
     data class CurrentState(
         val buttonAuto: Boolean = false,
         val buttonSignUp: Boolean = false,
-        val buttonLogin: Boolean = false
+        val buttonLogin: Boolean = false,
     )
 
     suspend fun apiResponce() {

@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.activity.MainActivity"
+            android:name=".presentation.view.activity.SplashActivity"
             android:exported="false">
         </activity>
         <activity
@@ -29,7 +29,7 @@
             android:name=".presentation.view.activity.FirstOnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.activity.SplashActivity"
+            android:name=".presentation.view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
