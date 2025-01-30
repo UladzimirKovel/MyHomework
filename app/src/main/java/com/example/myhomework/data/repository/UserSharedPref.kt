@@ -2,26 +2,38 @@ package com.example.myhomework.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 class UserSharedPref(context: Context) {
-    private val sharedPref: SharedPreferences =
-        context.getSharedPreferences("UserPref", Context.MODE_PRIVATE)
 
-    fun saveUser(firstName : String, lastName : String, email : String, password : String) {
-        val editor = sharedPref.edit()
-        editor.putString("firstName", firstName)
-        editor.putString("lastName", lastName)
-        editor.putString("email", email)
-        editor.putString("password", password)
-        editor.apply()
+    private val sharedPref: SharedPreferences =
+        context.getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
+
+    fun saveUser(firstName : String, lastName: String, email : String, password : String) {
+
+        sharedPref.edit(commit = true) {
+            putString("firstName", firstName)
+            putString("lastName", lastName)
+            putString("email", email)
+            putString("password", password)
+        }
+
+//        val editor = sharedPref.edit()
+//        editor.putString("firstName", firstName)
+//        editor.putString("lastName", lastName)
+//        editor.putString("email", email)
+//        editor.putString("password", password)
+//        editor.apply()
     }
 
-//    fun getUser() : Map<String, String?> { // Придумать использование
-//        return mapOf(
-//            "firstName" to sharedPref.getString("firstName", null),
-//            "lastName" to sharedPref.getString("lastName", null),
-//            "email" to sharedPref.getString("email", null),
-//            "password" to sharedPref.getString("password", null)
-//        )
-//    }
+    fun getCurrentUser(): Pair<String, String>? {
+
+        val email = sharedPref.getString("email", null)
+        val password = sharedPref.getString("password", null)
+        return if (email != null && password != null) Pair(email, password) else null
+    }
+
+    fun clearUser() {
+        sharedPref.edit().clear().apply()
+    }
 }

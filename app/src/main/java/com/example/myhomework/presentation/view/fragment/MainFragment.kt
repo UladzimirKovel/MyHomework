@@ -30,14 +30,10 @@ class MainFragment : Fragment() {
 //        setupListener(currentView)
 //        return currentView
 
-        viewModel =
-            ViewModelProvider.AndroidViewModelFactory.getInstance(
+        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(
                 application = requireActivity()
-                    .application
-            )
-                .create(
-                    MainFragmentViewModel::class.java
-                )
+                    .application)
+                .create(MainFragmentViewModel::class.java)
 
         _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
 
@@ -67,16 +63,20 @@ class MainFragment : Fragment() {
     private fun setupListener() {
 
         binding.fragmentButtonAuto.setOnClickListener {
-//            viewModel?.handleAction(MainFragmentActions.GoToListAutoFragment)
             findNavController().navigate(R.id.listViewAutoFragment)
+
+//            viewModel?.handleAction(MainFragmentActions.GoToListAutoFragment)
+
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, ListViewAutoFragment(), "AutoList")
 //                .addToBackStack(null)
 //                .commit()
         }
         binding.fragmentButtonSignUp.setOnClickListener {
+            findNavController().navigate(R.id.signUpFragment)
+
 //            viewModel?.handleAction(MainFragmentActions.GoToSignUpFragment)
-            findNavController().navigate(R.id.mainFragment)
+
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, SignUpFragment(), "SignUp")
 //                .addToBackStack(null)
@@ -84,8 +84,10 @@ class MainFragment : Fragment() {
         }
 
         binding.fragmentMainTextviewToLogin.setOnClickListener {
-//            viewModel?.handleAction(MainFragmentActions.GoToLoginFragment)
             findNavController().navigate(R.id.loginFragment)
+
+//            viewModel?.handleAction(MainFragmentActions.GoToLoginFragment)
+
 //            parentFragmentManager.beginTransaction()
 //                .replace(R.id.newFragmentView, LoginFragment(), "Login")
 //                .addToBackStack(null)

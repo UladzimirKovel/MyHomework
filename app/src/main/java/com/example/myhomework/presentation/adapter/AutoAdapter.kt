@@ -174,8 +174,7 @@ class AutoAdapter(
 
         if (position != RecyclerView.NO_POSITION) {
 
-            val noteToRemove =
-                notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
+            val noteToRemove = notes[position]// Извлекаем заметку, которую нужно удалить, по текущей позиции
             ListAutoRepository.removeNote(noteToRemove)// Удаляем заметку из репозитория
             notifyDataSetChanged()// Уведомляем адаптер о том, что данные изменились
         }

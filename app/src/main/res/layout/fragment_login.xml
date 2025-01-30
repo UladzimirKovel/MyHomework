@@ -21,7 +21,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/login_textview_email"
+            android:id="@+id/login_tv_email"
             android:hint="@string/login_textview_email"
             android:digits="@string/edittext_default"
             android:layout_width="@dimen/linear_edittext_width_260dp"
@@ -34,7 +34,7 @@
             style="@style/EditTextStyle" />
 
         <EditText
-            android:id="@+id/login_textview_password"
+            android:id="@+id/login_tv_password"
             android:hint="@string/login_textview_password"
             android:digits="@string/edittext_default"
             android:layout_width="@dimen/linear_edittext_width_260dp"
@@ -49,33 +49,33 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_main"
-        style="@style/MainButtonStyle"
+        android:id="@+id/signUp_textview"
+        android:text="@string/signUp_button_main"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="@dimen/main_active_button_margin_180dp"
-        android:text="@string/login_button_main" />
+        android:layout_marginBottom="@dimen/title_main_90dp"
+        style="@style/MainButtonStyle" />
 
     <TextView
-        android:id="@+id/main_textview_to_login"
-        android:text="@string/acc_textview_login"
+        android:id="@+id/main_menu_textview"
+        android:text="@string/acc_textview_data_storage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:textSize="@dimen/linear_layout_padding_40sp"
-        android:layout_marginBottom="@dimen/textview_margin_100dp"
+        android:layout_marginBottom="@dimen/linear_edittext_margin_25dp"
         style="@style/LogInButtonStyle"
         android:fontFamily="@font/acme"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_button"
+        android:id="@+id/login_check"
         android:layout_width="@dimen/acb_width_270dp"
         android:layout_height="@dimen/acb_height_50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/acb_margin_top_15dp"
+        android:layout_marginTop="@dimen/main_active_button_margin_180dp"
         android:background="@drawable/login_button"
-        android:text="@string/Next"
+        android:text="@string/Log_in"
         android:textColor="#fdfdfd"
         android:textSize="@dimen/acb_text_size_18sp"
         android:textStyle="bold" />

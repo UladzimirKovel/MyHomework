@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,8 +71,8 @@ class ListViewAutoFragment : Fragment() {
 
         binding.addNotesButton.setOnClickListener {
             binding.apply {
-                if (titleNotesTv != null && messageNotesTv != null) {
-                    listAutoModel.handleAddNote(titleNotesTv, messageNotesTv)
+                if (titleNotesTv != null && contentNotesTv != null) {
+                    listAutoModel.handleAddNote(titleNotesTv, contentNotesTv)
                 }
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(3000)
@@ -82,7 +80,6 @@ class ListViewAutoFragment : Fragment() {
                 }
             }
         }
-
 
         binding.backMainFragment.setOnClickListener {
             backParent()

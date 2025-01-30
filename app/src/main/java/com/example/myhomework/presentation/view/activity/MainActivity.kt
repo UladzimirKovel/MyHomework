@@ -17,11 +17,11 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var toolbar:Toolbar
-    private lateinit var drawerLayout:DrawerLayout
+    private lateinit var toolbar: Toolbar
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var navigationView: NavigationView
-    private lateinit var appBarConfiguration:AppBarConfiguration
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
 //    private var toolbar:Toolbar? = null
 //    private var drawerLayout:DrawerLayout? = null
@@ -45,8 +45,15 @@ class MainActivity : AppCompatActivity() {
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navController = findNavController(R.id.fragmentContainerView)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment, R.id.listViewAutoFragment, R.id.loginFragment, R.id.mainFragment))
-        setupActionBarWithNavController(navController,drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.mainFragment,
+                R.id.signUpFragment,
+                R.id.listViewAutoFragment,
+                R.id.loginFragment
+            )
+        )
+        setupActionBarWithNavController(navController, drawerLayout)
         navigationView.setupWithNavController(navController)
 
     }
@@ -59,13 +66,28 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
+
                 drawerLayout.openDrawer(GravityCompat.START)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            android.R.id.home -> {
+//                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//                    drawerLayout.closeDrawer(GravityCompat.START)
+//                } else {
+//                    navController.navigateUp() // Возврат на предыдущий фрагмент
+//                }
+//                true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }
 
 

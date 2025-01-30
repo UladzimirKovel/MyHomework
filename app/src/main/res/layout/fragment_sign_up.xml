@@ -21,7 +21,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/signup_textview_firstname"
+            android:id="@+id/tv_firstname"
             android:layout_width="@dimen/linear_edittext_width_260dp"
             android:layout_height="wrap_content"
             android:digits="@string/edittext_name"
@@ -34,7 +34,7 @@
             style="@style/EditTextStyle" />
 
         <EditText
-            android:id="@+id/signup_textview_lastname"
+            android:id="@+id/tv_lastname"
             android:layout_width="@dimen/linear_edittext_width_260dp"
             android:layout_height="wrap_content"
             android:digits="@string/edittext_name"
@@ -47,7 +47,7 @@
             style="@style/EditTextStyle" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/tv_email"
             android:autofillHints="emailAddress"
             android:layout_width="@dimen/linear_edittext_width_260dp"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             style="@style/EditTextStyle" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/tv_password"
             android:autofillHints="password"
             android:layout_width="@dimen/linear_edittext_width_260dp"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_signup"
+        android:id="@+id/button_back_main"
         style="@style/MainButtonStyle"
         android:layout_width="@dimen/button_width_320dp"
         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         style="@style/LogInButtonStyle" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_button"
+        android:id="@+id/login_save"
         android:background="@drawable/login_button"
         android:layout_marginTop="@dimen/button_margin_top_170dp"
         android:layout_gravity="center"
@@ -102,6 +102,6 @@
         android:layout_height="@dimen/acb_height_50dp"
         android:textStyle="bold"
         android:textSize="@dimen/acb_text_size_18sp"
-        android:text="@string/Next" />
+        android:text="@string/Save" />
 
 </FrameLayout>
